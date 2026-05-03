@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://by0orr3rnqcsv"]
+
+[ext_resource type="Script" uid="uid://c2inrmieiudhl" path="res://entities/projectiles/torpedo.gd" id="1_sx8fi"]
+[ext_resource type="Texture2D" uid="uid://cryc3sxwen8km" path="res://asset/projectiles/Torpedo Projectile.png" id="2_74lfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx8fi"]
+size = Vector2(8, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htpr7"]
+atlas = ExtResource("2_74lfm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qy5c"]
+atlas = ExtResource("2_74lfm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckeus"]
+atlas = ExtResource("2_74lfm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abvrv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htpr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qy5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckeus")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Torpedo" type="Area2D" unique_id=87917714]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_sx8fi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816204647]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sx8fi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=248152338]
+position = Vector2(0, -5.0487095e-29)
+rotation = 1.5707964
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_abvrv")
+autoplay = "default"
+frame_progress = 0.6796644
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

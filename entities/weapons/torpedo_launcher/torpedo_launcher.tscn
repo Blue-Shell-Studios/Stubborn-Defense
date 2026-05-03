@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://dyyiu7tpxya4w"]
+
+[ext_resource type="Script" uid="uid://bala678qvxlj8" path="res://entities/weapons/torpedo_launcher/torpedo_launcher.gd" id="1_i0x6r"]
+[ext_resource type="PackedScene" uid="uid://by0orr3rnqcsv" path="res://entities/projectiles/torpedo.tscn" id="2_45mwx"]
+[ext_resource type="Texture2D" uid="uid://dsrwcvbbiw1o4" path="res://asset/weapons/Torpedo 1.png" id="3_67kh2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i0x6r"]
+radius = 250.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r3vx"]
+atlas = ExtResource("3_67kh2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfipu"]
+atlas = ExtResource("3_67kh2")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvdmm"]
+atlas = ExtResource("3_67kh2")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb1kd"]
+atlas = ExtResource("3_67kh2")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehun8"]
+atlas = ExtResource("3_67kh2")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mscsk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r3vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfipu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvdmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb1kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehun8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TorpedoLauncher" type="Node2D" unique_id=262611423]
+script = ExtResource("1_i0x6r")
+weapon_id = "torpedo_launcher"
+display_name = "Torpedo Launcher"
+shop_cost = 24
+projectile_scene = ExtResource("2_45mwx")
+damage = 35.0
+cooldown = 2.5
+critical_rate = 0.05
+critical_damage_multiplier = 2.5
+range = 450.0
+projectile_speed = 450.0
+projectile_aoe_radius = 80.0
+rotation_speed = 7.0
+
+[node name="RangeArea" type="Area2D" parent="." unique_id=454685241]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea" unique_id=22069856]
+shape = SubResource("CircleShape2D_i0x6r")
+
+[node name="Output" type="Node2D" parent="." unique_id=298986105]
+position = Vector2(9, 0)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1533358389]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1707644444]
+position = Vector2(8, 7.105423e-15)
+rotation = 1.5707964
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_mscsk")

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dthbymiy3ytwv"]
+
+[ext_resource type="Script" uid="uid://ciko5kf3ym4t6" path="res://game_stages/game/game.gd" id="1_s5mw4"]
+[ext_resource type="Texture2D" uid="uid://bwbs6wl667jck" path="res://asset/Space Background 500x500.png" id="2_edvi6"]
+[ext_resource type="PackedScene" uid="uid://6758jaot11an" path="res://entities/player/player.tscn" id="3_3l8jv"]
+[ext_resource type="Script" uid="uid://5rbamfaxwt7a" path="res://game_stages/game/projectile_manager.gd" id="5_hqukp"]
+[ext_resource type="PackedScene" uid="uid://bejhrs0181h1r" path="res://ui/hud/HUD.tscn" id="6_d8lcn"]
+[ext_resource type="PackedScene" path="res://entities/planet/planet.tscn" id="7_1gf4m"]
+[ext_resource type="Script" path="res://game_stages/game/shop_manager.gd" id="8_tnxhe"]
+[ext_resource type="Script" path="res://game_stages/game/level_up_manager.gd" id="9_level"]
+
+[node name="Game" type="Node2D" unique_id=398892491]
+script = ExtResource("1_s5mw4")
+metadata/_custom_type_script = "uid://snktbelgrsgm"
+
+[node name="Background" type="TextureRect" parent="." unique_id=96958308]
+offset_right = 3000.0
+offset_bottom = 3000.0
+texture = ExtResource("2_edvi6")
+stretch_mode = 1
+
+[node name="Planet" parent="." unique_id=436284464 instance=ExtResource("7_1gf4m")]
+position = Vector2(1500, 1500)
+
+[node name="Player" parent="." unique_id=835007775 instance=ExtResource("3_3l8jv")]
+position = Vector2(640, 360)
+
+[node name="ProjectileManager" type="Node2D" parent="." unique_id=1576273427]
+script = ExtResource("5_hqukp")
+
+[node name="ShopManager" type="Node" parent="."]
+script = ExtResource("8_tnxhe")
+
+[node name="LevelUpManager" type="Node" parent="."]
+script = ExtResource("9_level")
+
+[node name="HUD" parent="." unique_id=632813108 instance=ExtResource("6_d8lcn")]

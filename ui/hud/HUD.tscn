@@ -1,0 +1,588 @@
+[gd_scene format=3 uid="uid://bejhrs0181h1r"]
+
+[ext_resource type="Script" uid="uid://6asw5si8wbbn" path="res://ui/hud/hud.gd" id="1_grlcq"]
+[ext_resource type="Script" uid="uid://bvm3bedihyowk" path="res://ui/hud/minimap.gd" id="2_4yj8d"]
+[ext_resource type="Script" path="res://ui/hud/player_stats_panel.gd" id="3_stats"]
+[ext_resource type="Script" path="res://ui/hud/shop_panel.gd" id="4_shop"]
+[ext_resource type="Script" path="res://ui/hud/level_up_panel.gd" id="5_level"]
+[ext_resource type="Script" path="res://ui/hud/planet_status_panel.gd" id="6_planet"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1507560053]
+script = ExtResource("1_grlcq")
+
+[node name="StatsPanel" type="PanelContainer" parent="." unique_id=513745585]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 260.0
+offset_bottom = 264.0
+script = ExtResource("3_stats")
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsPanel" unique_id=1044888187]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="Stats" type="VBoxContainer" parent="StatsPanel/MarginContainer" unique_id=390842767]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="LevelLabel" type="Label" parent="StatsPanel/MarginContainer/Stats" unique_id=153193506]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Level: 1"
+
+[node name="HealthBar" type="ProgressBar" parent="StatsPanel/MarginContainer/Stats" unique_id=57948337]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 22)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="StatsPanel/MarginContainer/Stats/HealthBar" unique_id=1443905419]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 214.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 14
+text = "HP: 100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpBar" type="ProgressBar" parent="StatsPanel/MarginContainer/Stats" unique_id=1268456710]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 22)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="StatsPanel/MarginContainer/Stats/ExpBar" unique_id=1326042474]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 214.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 14
+text = "EXP: 0 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrapLabel" type="Label" parent="StatsPanel/MarginContainer/Stats" unique_id=1792460603]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Scrap: 0"
+
+[node name="Minimap" type="Control" parent="StatsPanel/MarginContainer/Stats" unique_id=1339620846]
+custom_minimum_size = Vector2(220, 140)
+layout_mode = 2
+script = ExtResource("2_4yj8d")
+
+[node name="PlanetStatusPanel" type="PanelContainer" parent="." unique_id=927527801]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -276.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 126.0
+script = ExtResource("6_planet")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlanetStatusPanel" unique_id=454354432]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="PlanetStats" type="VBoxContainer" parent="PlanetStatusPanel/MarginContainer" unique_id=802881143]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PlanetLabel" type="Label" parent="PlanetStatusPanel/MarginContainer/PlanetStats" unique_id=134923047]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Planet"
+horizontal_alignment = 1
+
+[node name="PlanetHealthBar" type="ProgressBar" parent="PlanetStatusPanel/MarginContainer/PlanetStats" unique_id=372939888]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 22)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="PlanetStatusPanel/MarginContainer/PlanetStats/PlanetHealthBar" unique_id=779101787]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 234.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 14
+text = "Planet HP: 1000 / 1000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlanetShieldBar" type="ProgressBar" parent="PlanetStatusPanel/MarginContainer/PlanetStats" unique_id=674190623]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 22)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="PlanetStatusPanel/MarginContainer/PlanetStats/PlanetShieldBar" unique_id=527557154]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 234.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 14
+text = "Shield: 250 / 250"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopHintLabel" type="Label" parent="." unique_id=869772004]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 272.0
+offset_right = 260.0
+offset_bottom = 294.0
+theme_override_font_sizes/font_size = 14
+text = "Press P to open shop"
+horizontal_alignment = 1
+
+[node name="ReviveCountdownLabel" type="Label" parent="." unique_id=764028629]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -44.0
+offset_right = 260.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Player reviving in 5..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelUpPanel" type="PanelContainer" parent="." unique_id=84519214]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_level")
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelUpPanel" unique_id=31949034]
+layout_mode = 2
+theme_override_constants/margin_left = 260
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 260
+theme_override_constants/margin_bottom = 150
+
+[node name="LevelUpContent" type="VBoxContainer" parent="LevelUpPanel/MarginContainer" unique_id=520211503]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="LevelUpPanel/MarginContainer/LevelUpContent" unique_id=778860633]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Level Up"
+horizontal_alignment = 1
+
+[node name="Choices" type="HBoxContainer" parent="LevelUpPanel/MarginContainer/LevelUpContent" unique_id=246847706]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="LevelChoiceButton1" type="Button" parent="LevelUpPanel/MarginContainer/LevelUpContent/Choices" unique_id=933962786]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "-"
+
+[node name="LevelChoiceButton2" type="Button" parent="LevelUpPanel/MarginContainer/LevelUpContent/Choices" unique_id=580437514]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "-"
+
+[node name="LevelChoiceButton3" type="Button" parent="LevelUpPanel/MarginContainer/LevelUpContent/Choices" unique_id=173348971]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "-"
+
+[node name="LevelChoiceButton4" type="Button" parent="LevelUpPanel/MarginContainer/LevelUpContent/Choices" unique_id=539846698]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "-"
+
+[node name="LevelUpRefreshButton" type="Button" parent="LevelUpPanel/MarginContainer/LevelUpContent" unique_id=785724162]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Refresh"
+
+[node name="LevelUpMessageLabel" type="Label" parent="LevelUpPanel/MarginContainer/LevelUpContent" unique_id=716414702]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="ShopPanel" type="PanelContainer" parent="." unique_id=27242064]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_shop")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopPanel" unique_id=742793617]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="ShopContent" type="VBoxContainer" parent="ShopPanel/MarginContainer" unique_id=1230805227]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="ShopPanel/MarginContainer/ShopContent" unique_id=694619509]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Planet Shop"
+horizontal_alignment = 1
+
+[node name="ShopTimerLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent" unique_id=30344550]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Refresh: 30s"
+horizontal_alignment = 1
+
+[node name="MainRow" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent" unique_id=669118463]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 18
+
+[node name="ShopLeft" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow" unique_id=252027861]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Offers" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft" unique_id=2079743953]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="OfferCard1" type="PanelContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers" unique_id=1797512844]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 220)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1" unique_id=522164701]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="OfferContent" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer" unique_id=691352368]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent" unique_id=701570057]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OfferImage1" type="ColorRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header" unique_id=720160845]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.18, 0.2, 0.26, 1)
+
+[node name="HeaderText" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header" unique_id=725995388]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OfferName1" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header/HeaderText" unique_id=352867006]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "-"
+autowrap_mode = 3
+
+[node name="OfferType1" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header/HeaderText" unique_id=558549896]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "-"
+
+[node name="OfferDetails1" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent" unique_id=648011174]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 13
+text = "-"
+autowrap_mode = 3
+
+[node name="OfferBuyButton1" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent" unique_id=474139528]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Buy"
+
+[node name="OfferCard2" type="PanelContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers" unique_id=838726811]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 220)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2" unique_id=967096843]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="OfferContent" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer" unique_id=907206242]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent" unique_id=770974096]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OfferImage2" type="ColorRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header" unique_id=761189356]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.18, 0.2, 0.26, 1)
+
+[node name="HeaderText" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header" unique_id=743623211]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OfferName2" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header/HeaderText" unique_id=100551552]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "-"
+autowrap_mode = 3
+
+[node name="OfferType2" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header/HeaderText" unique_id=880724253]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "-"
+
+[node name="OfferDetails2" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent" unique_id=242274389]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 13
+text = "-"
+autowrap_mode = 3
+
+[node name="OfferBuyButton2" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent" unique_id=816098141]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Buy"
+
+[node name="OfferCard3" type="PanelContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers" unique_id=1248027212]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 220)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3" unique_id=129205085]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="OfferContent" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer" unique_id=992237622]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent" unique_id=334279903]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OfferImage3" type="ColorRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header" unique_id=212369837]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.18, 0.2, 0.26, 1)
+
+[node name="HeaderText" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header" unique_id=956129725]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OfferName3" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header/HeaderText" unique_id=144832552]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "-"
+autowrap_mode = 3
+
+[node name="OfferType3" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header/HeaderText" unique_id=121596767]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "-"
+
+[node name="OfferDetails3" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent" unique_id=804114835]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 13
+text = "-"
+autowrap_mode = 3
+
+[node name="OfferBuyButton3" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent" unique_id=815706951]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Buy"
+
+[node name="RefreshButton" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft" unique_id=1742949379]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Refresh 5 Scrap"
+
+[node name="WeaponSlotsLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft" unique_id=890976972]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Weapons"
+
+[node name="WeaponSlots" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft" unique_id=518977984]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="WeaponSlot1" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponSlots" unique_id=318368608]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Empty"
+
+[node name="WeaponSlot2" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponSlots" unique_id=451358322]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Empty"
+
+[node name="WeaponSlot3" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponSlots" unique_id=452593013]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Empty"
+
+[node name="WeaponSlot4" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponSlots" unique_id=345473066]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Empty"
+
+[node name="WeaponSlot5" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponSlots" unique_id=62231994]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Empty"
+
+[node name="WeaponSlot6" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponSlots" unique_id=950605861]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Empty"
+
+[node name="WeaponActions" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft" unique_id=454990139]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CombineButton" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponActions" unique_id=1118820828]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+theme_override_font_sizes/font_size = 14
+text = "Combine"
+
+[node name="SellButton" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponActions" unique_id=39750568]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+theme_override_font_sizes/font_size = 14
+text = "Sell"
+
+[node name="ShopStatsLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow" unique_id=542371586]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Stats"
+
+[node name="ShopMessageLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent" unique_id=1994621119]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="GameOverButton" type="Button" parent="." unique_id=516058947]
+unique_name_in_owner = true
+visible = false
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "GAME OVER\nPlanet destroyed\nClick to return to main menu"

@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://ddhkkb4m1q0si"]
+
+[ext_resource type="Script" uid="uid://dq5otvw52vxm5" path="res://entities/enemies/shooter/shooter_enemy.gd" id="1_shooter"]
+[ext_resource type="Texture2D" uid="uid://cm6j133geue3g" path="res://asset/enemies/shooter/Nairan - Bomber - Base.png" id="2_4wahk"]
+[ext_resource type="Texture2D" uid="uid://bu6f2miga15ot" path="res://asset/enemies/shooter/Nairan - Bomber -  Destruction.png" id="2_q1kkm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_root"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vessel"]
+radius = 16.62077
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q58p7"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnagh"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc4ih"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8bjm"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_intyd"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1hop"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7jq1"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dpod"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u5kk"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24ntf"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg3ye"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5tvt"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lyvw"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3wxx"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s1mf"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hto05"]
+atlas = ExtResource("2_q1kkm")
+region = Rect2(960, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_shooter"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q58p7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnagh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc4ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8bjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_intyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1hop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7jq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dpod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u5kk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24ntf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg3ye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5tvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lyvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3wxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s1mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hto05")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4wahk")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="ShooterEnemy" type="CharacterBody2D" unique_id=771428839]
+script = ExtResource("1_shooter")
+max_health = 65.0
+move_speed = 95.0
+aggro_range = 480.0
+attack_range = 420.0
+attack_damage = 8.0
+attack_cooldown = 1.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1083744874]
+shape = SubResource("CircleShape2D_root")
+disabled = true
+
+[node name="Vessel" type="Area2D" parent="." unique_id=1573938081]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vessel" unique_id=125099511]
+position = Vector2(-1.5, 0)
+shape = SubResource("CircleShape2D_vessel")
+
+[node name="EngineSprite" type="AnimatedSprite2D" parent="Vessel" unique_id=334942609]
+
+[node name="BodySprite" type="AnimatedSprite2D" parent="Vessel" unique_id=1802600963]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_shooter")
+animation = &"explode"
+autoplay = "idle"
+frame_progress = 0.70182693

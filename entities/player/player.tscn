@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://6758jaot11an"]
+
+[ext_resource type="Script" uid="uid://n30c3kg1i8lt" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://drrk8lyqrt41i" path="res://asset/player/player.png" id="2_abrql"]
+[ext_resource type="Script" uid="uid://cnbv4kqb45bl7" path="res://entities/player/weapon_manager.gd" id="3_bls4j"]
+[ext_resource type="PackedScene" uid="uid://cxj63nn8bvu7g" path="res://entities/weapons/gatling_turret/gatling_turret.tscn" id="4_bls4j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bls4j"]
+radius = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abrql"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_scrap_suction"]
+radius = 150.0
+
+[node name="Player" type="CharacterBody2D" unique_id=835007775]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_symyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1997119979]
+shape = SubResource("CircleShape2D_bls4j")
+disabled = true
+
+[node name="Vessel" type="Area2D" parent="." unique_id=1292945266]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Vessel" unique_id=886683960]
+rotation = 1.5707964
+texture = ExtResource("2_abrql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vessel" unique_id=1069433506]
+shape = SubResource("RectangleShape2D_abrql")
+
+[node name="ScrapSuctionArea" type="Area2D" parent="." unique_id=246790395]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScrapSuctionArea" unique_id=225246337]
+shape = SubResource("CircleShape2D_scrap_suction")
+
+[node name="Weapons" type="Node2D" parent="." unique_id=1139818425]
+script = ExtResource("3_bls4j")
+
+[node name="GatlingTurret" parent="Weapons" unique_id=1475920468 instance=ExtResource("4_bls4j")]
+
+[node name="GatlingTurret2" parent="Weapons" unique_id=1069815146 instance=ExtResource("4_bls4j")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=645066985]
+
+[connection signal="area_entered" from="ScrapSuctionArea" to="." method="_on_scrap_suction_area_area_entered"]

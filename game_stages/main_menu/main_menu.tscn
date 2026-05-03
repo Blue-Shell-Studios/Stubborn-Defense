@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ckhr8suodxb6g"]
+
+[ext_resource type="Script" uid="uid://gh01hvvisy0r" path="res://game_stages/main_menu/main_menu.gd" id="1_skiaa"]
+
+[node name="MainMenu" type="Node2D" unique_id=1046093577]
+script = ExtResource("1_skiaa")
+metadata/_custom_type_script = "uid://snktbelgrsgm"
+
+[node name="StartScreen" type="Control" parent="." unique_id=1391776321]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="StartScreen" unique_id=1442428440]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="StartScreen/CenterContainer" unique_id=1736089883]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="Label" parent="StartScreen/CenterContainer/Menu" unique_id=1865666473]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Stubborn Defense"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="StartScreen/CenterContainer/Menu" unique_id=2003121336]
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Play"
+
+[node name="ExitButton" type="Button" parent="StartScreen/CenterContainer/Menu" unique_id=1132978629]
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Exit"
+
+[connection signal="pressed" from="StartScreen/CenterContainer/Menu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="StartScreen/CenterContainer/Menu/ExitButton" to="." method="_on_exit_button_pressed"]

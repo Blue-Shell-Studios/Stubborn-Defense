@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cxj63nn8bvu7g"]
+
+[ext_resource type="Script" uid="uid://djo5y578fjibj" path="res://entities/weapons/gatling_turret/gatling_turret.gd" id="1_ex7po"]
+[ext_resource type="Texture2D" uid="uid://de481hpkmfh1n" path="res://asset/weapons/Basic Cannon 1.png" id="2_a10h4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ex7po"]
+radius = 100.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibuyr"]
+atlas = ExtResource("2_a10h4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_otjvb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibuyr")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="GatlingTurret" type="Node2D" unique_id=1475920468]
+script = ExtResource("1_ex7po")
+weapon_id = "gatling_turret"
+display_name = "Gatling Turret"
+shop_cost = 12
+metadata/_custom_type_script = "uid://dqvrem2khm5uh"
+
+[node name="RangeArea" type="Area2D" parent="." unique_id=922059223]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea" unique_id=1995085574]
+shape = SubResource("CircleShape2D_ex7po")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1887347977]
+position = Vector2(6, 2.131628e-14)
+rotation = 1.5707964
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_otjvb")
+animation = &"idle"
+
+[node name="Output" type="Node2D" parent="." unique_id=1089724055]
+position = Vector2(11, 0)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1284557283]
+one_shot = true

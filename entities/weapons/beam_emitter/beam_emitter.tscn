@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://dvvx2ra6autpo"]
+
+[ext_resource type="Script" uid="uid://c4kodn5r2kl4v" path="res://entities/weapons/beam_emitter/beam_emitter.gd" id="1_s170s"]
+[ext_resource type="PackedScene" uid="uid://crl42y8cq5htk" path="res://entities/projectiles/beam.tscn" id="2_mm0mi"]
+[ext_resource type="Texture2D" uid="uid://b7vftpd7p4fjq" path="res://asset/weapons/Laser.png" id="3_2qp48"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s170s"]
+radius = 420.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eucx8"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1t0u"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjwev"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hbps"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5rbg"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o6rk"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34ln3"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w3r0"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vuii"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cabn"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(432, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkr6n"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(480, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gvrq"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(528, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ess1x"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(576, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0aeu"]
+atlas = ExtResource("3_2qp48")
+region = Rect2(624, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7len7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eucx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1t0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjwev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hbps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5rbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o6rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34ln3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w3r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vuii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cabn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkr6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gvrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ess1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0aeu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BeamEmitter" type="Node2D" unique_id=1091258308]
+script = ExtResource("1_s170s")
+weapon_id = "beam_emitter"
+display_name = "Beam Emitter"
+shop_cost = 20
+projectile_scene = ExtResource("2_mm0mi")
+damage = 12.0
+cooldown = 1.2
+critical_rate = 0.08
+range = 420.0
+projectile_speed = 0.0
+projectile_width = 14.0
+projectile_lifetime = 0.12
+rotation_speed = 10.0
+
+[node name="RangeArea" type="Area2D" parent="." unique_id=717799475]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea" unique_id=273832778]
+shape = SubResource("CircleShape2D_s170s")
+
+[node name="Output" type="Node2D" parent="." unique_id=149172979]
+position = Vector2(5, 0)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1250181750]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1176392631]
+position = Vector2(1, 0)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7len7")

@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://crl42y8cq5htk"]
+
+[ext_resource type="Script" uid="uid://d5t6gub7b5t" path="res://entities/projectiles/beam.gd" id="1_eyml4"]
+[ext_resource type="Texture2D" uid="uid://duhji2lwh36qc" path="res://asset/projectiles/Laser Projectile.png" id="2_3o46d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyml4"]
+size = Vector2(400, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd5cd"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiby4"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0408i"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o66a"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56a8w"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25myg"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw27e"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auldu"]
+atlas = ExtResource("2_3o46d")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2o6u0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd5cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiby4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0408i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o66a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56a8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25myg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw27e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auldu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Beam" type="Area2D" unique_id=906363641]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_eyml4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1497503225]
+position = Vector2(200, 0)
+shape = SubResource("RectangleShape2D_eyml4")
+
+[node name="LifetimeTimer" type="Timer" parent="." unique_id=696510796]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=788153321]
+position = Vector2(16, 0)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_2o6u0")
+frame_progress = 0.6063034
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

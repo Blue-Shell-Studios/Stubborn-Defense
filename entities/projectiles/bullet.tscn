@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://b5fwx8q6q1p7h"]
+
+[ext_resource type="Script" uid="uid://c8sbys7mlmxwm" path="res://entities/projectiles/bullet.gd" id="1_x5sy3"]
+[ext_resource type="Texture2D" uid="uid://drhcyjgetbmbc" path="res://asset/projectiles/Basic Cannon Projectile.png" id="2_f3qpu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5sy3"]
+size = Vector2(6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7qnr"]
+atlas = ExtResource("2_f3qpu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03pju"]
+atlas = ExtResource("2_f3qpu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2bmn"]
+atlas = ExtResource("2_f3qpu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iangv"]
+atlas = ExtResource("2_f3qpu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_641o7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7qnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03pju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2bmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iangv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Bullet" type="Area2D" unique_id=873505193]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_x5sy3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1253683513]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_x5sy3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1431681330]
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_641o7")
+autoplay = "default"
+frame = 3
+frame_progress = 0.86460835
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
