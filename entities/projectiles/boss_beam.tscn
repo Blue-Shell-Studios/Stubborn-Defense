@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d0m6k2u4b2v0j"]
+
+[ext_resource type="Script" path="res://entities/projectiles/boss_beam.gd" id="1_boss_beam"]
+[ext_resource type="PackedScene" uid="uid://crl42y8cq5htk" path="res://entities/projectiles/beam.tscn" id="2_beam_scene"]
+
+[node name="BossBeam" instance=ExtResource("2_beam_scene")]
+collision_mask = 3
+script = ExtResource("1_boss_beam")
+
