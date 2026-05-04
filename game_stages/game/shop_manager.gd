@@ -26,50 +26,134 @@ const ITEM_POOL := [
 		"name": "Nebula Plating",
 		"description": "Layered hull panels tuned for long patrols.",
 		"cost": 10,
-		"stats": {"max_hp": 14.0, "armor": 1.0},
+		"stats": {"max_hp": 14.0, "armor": 1.0}
 	},
 	{
 		"id": "ion_overcharger",
 		"name": "Ion Overcharger",
 		"description": "Pushes extra current through weapon emitters.",
 		"cost": 14,
-		"stats": {"damage_bonus_percent": 8.0, "attack_speed_bonus_percent": -3.0},
+		"stats": {"damage_bonus_percent": 8.0, "attack_speed_bonus_percent": -3.0}
 	},
 	{
 		"id": "pulse_regulator",
 		"name": "Pulse Regulator",
 		"description": "Stabilizes firing cycles for quicker volleys.",
 		"cost": 13,
-		"stats": {"attack_speed_bonus_percent": 10.0},
+		"stats": {"attack_speed_bonus_percent": 10.0}
 	},
 	{
 		"id": "comet_lens",
 		"name": "Comet Lens",
 		"description": "Focuses weapon tracking beyond standard range.",
 		"cost": 12,
-		"stats": {"range": 45.0},
+		"stats": {"range": 45.0}
 	},
 	{
 		"id": "void_targeter",
 		"name": "Void Targeter",
 		"description": "Highlights weak points in hostile hulls.",
 		"cost": 16,
-		"stats": {"crit_chance": 0.05, "crit_damage_multiplier": 0.15},
+		"stats": {"crit_chance": 0.05, "crit_damage_multiplier": 0.15}
 	},
 	{
 		"id": "phase_thrusters",
 		"name": "Phase Thrusters",
 		"description": "Adds erratic micro-jumps to your flight path.",
 		"cost": 15,
-		"stats": {"speed": 45.0, "dodge": 0.03},
+		"stats": {"speed": 45.0, "dodge": 0.03}
 	},
 	{
 		"id": "starfinder_core",
 		"name": "Starfinder Core",
 		"description": "Improves salvage scans and rare stock discovery.",
 		"cost": 18,
-		"stats": {"luck": 2.0},
+		"stats": {"luck": 2.0}
 	},
+	{
+		"id": "sun_scepter",
+		"name": "Sun Scepter",
+		"description": "Infuse the power of the sun to weapons",
+		"cost": 15,
+		"stats": {"damage_bonus_percent": 15.0}
+	},
+	{
+		"id": "startouch_visor",
+		"name": "Startouch Visor",
+		"description": "Enhance field of vision",
+		"cost": 10,
+		"stats": {"range": 25.0}
+	},
+	{
+		"id": "star_atlas",
+		"name": "Star Atlas",
+		"description": "Maps out the location through the guidance of the stars",
+		"cost": 30,
+		"stats": {"range": 15.0, "luck": 4.0}
+	},
+	{
+		"id": "dark_matter",
+		"name": "Dark Matter",
+		"description": "A highly valuable fuel throughout the cosmos",
+		"cost": 19,
+		"stats": {"attack_speed_bonus_percent": -5.0, "speed": 60.0}
+	},
+	{
+		"id": "cosmic_core",
+		"name": "Cosmic Core",
+		"description": "Analyses enemy movement patterns increasing deadly stikes",
+		"cost": 13,
+		"stats": {"crit_chance": 0.1, "damage_bonus_percent": 4.0}
+	},
+	{
+		"id": "time_warp",
+		"name": "Time Warp",
+		"description": "Creates time space fluctuations to pass through matter",
+		"cost": 16,
+		"stats": {"dodge": 0.05, "speed": 30.0}
+	},
+	{
+		"id": "astral_deflector",
+		"name": "Astral Deflector",
+		"description": "Defense system module that provides protection against astral forces",
+		"cost": 17,
+		"stats": {"max_hp": 6.0, "armor": 3.0}
+	},
+	{
+		"id": "pulsar_shot",
+		"name": "Pulsar Shot",
+		"description": "Weapon modification that mimics neutron star beams",
+		"cost": 14,
+		"stats": {"crit_chance": 0.09, "crit_damage_multiplier": 0.1}
+	},
+	{
+		"id": "chaos_amulet",
+		"name": "Chaos Amulet",
+		"description": "Super dense compressed energy that bends probability",
+		"cost": 25,
+		"stats": {"luck": 3.0, "dodge": 0.02}
+	},
+	{
+		"id": "structural_integrity_module",
+		"name": "Structural Integrity Module",
+		"description": "Creates a thin layer of energy field that absorb impacts",
+		"cost": 15,
+		"stats": {"armor": 4.0}
+	},
+	{
+		"id": "blazar_energy_cube",
+		"name": "Blazar energy cube",
+		"description": "Integrate gamma rays into weapons",
+		"cost": 12,
+		"stats": {"crit_damage_multiplier": 0.3}
+	},
+	{
+		"id": "nanotech_system",
+		"name": "Nanotech System",
+		"description": "Micro repair technology that can transform into ship components",
+		"cost": 14,
+		"stats": {"max_hp": 20.0}
+	}
 ]
 
 @export var offer_count := 3
