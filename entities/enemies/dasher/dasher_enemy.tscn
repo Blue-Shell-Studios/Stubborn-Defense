@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://d3xg8k5tpxp2a"]
+
+[ext_resource type="Script" uid="uid://c3w2xxb36kg38" path="res://entities/enemies/dasher/dasher_enemy.gd" id="1_dasher"]
+[ext_resource type="Texture2D" uid="uid://2srqwn4f8110" path="res://asset/enemies/dasher/Nairan - Frigate -  Destruction.png" id="2_xd4mp"]
+[ext_resource type="Texture2D" uid="uid://fk61ptaj477t" path="res://asset/enemies/dasher/Nairan - Frigate - Base.png" id="3_l10j8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_root"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyy06"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fenhr"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vntp7"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isrrr"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5m46"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wa0w"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26wsu"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxi8d"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7sj4"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwgqx"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22ayk"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hp8d"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydf6u"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clmgk"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0r05"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hwve"]
+atlas = ExtResource("2_xd4mp")
+region = Rect2(960, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dasher"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyy06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fenhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vntp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isrrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5m46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wa0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26wsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxi8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7sj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwgqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22ayk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hp8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydf6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clmgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0r05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hwve")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_l10j8")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ipqv"]
+size = Vector2(48, 26)
+
+[node name="DasherEnemy" type="CharacterBody2D" unique_id=999134503]
+script = ExtResource("1_dasher")
+max_health = 85.0
+move_speed = 120.0
+aggro_range = 420.0
+attack_range = 240.0
+attack_damage = 10.0
+attack_cooldown = 1.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1108963501]
+shape = SubResource("CircleShape2D_root")
+disabled = true
+
+[node name="Vessel" type="Area2D" parent="." unique_id=1117798949]
+collision_layer = 8
+collision_mask = 0
+
+[node name="EngineSprite" type="AnimatedSprite2D" parent="Vessel" unique_id=1360155999]
+
+[node name="BodySprite" type="AnimatedSprite2D" parent="Vessel" unique_id=72134471]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_dasher")
+animation = &"explode"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vessel" unique_id=1664796128]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_7ipqv")
