@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://6asw5si8wbbn" path="res://ui/hud/hud.gd" id="1_grlcq"]
 [ext_resource type="Script" uid="uid://bvm3bedihyowk" path="res://ui/hud/minimap.gd" id="2_4yj8d"]
-[ext_resource type="Script" path="res://ui/hud/player_stats_panel.gd" id="3_stats"]
-[ext_resource type="Script" path="res://ui/hud/shop_panel.gd" id="4_shop"]
-[ext_resource type="Script" path="res://ui/hud/level_up_panel.gd" id="5_level"]
-[ext_resource type="Script" path="res://ui/hud/planet_status_panel.gd" id="6_planet"]
+[ext_resource type="Script" uid="uid://c6xnv6ggrvmk4" path="res://ui/hud/player_stats_panel.gd" id="3_stats"]
+[ext_resource type="Script" uid="uid://cfk5jmaq72gxg" path="res://ui/hud/shop_panel.gd" id="4_shop"]
+[ext_resource type="Script" uid="uid://bencwocyrjt33" path="res://ui/hud/level_up_panel.gd" id="5_level"]
+[ext_resource type="Script" uid="uid://pu0tmd6ihc4h" path="res://ui/hud/planet_status_panel.gd" id="6_planet"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1507560053]
 script = ExtResource("1_grlcq")
@@ -80,6 +80,7 @@ layout_mode = 2
 script = ExtResource("2_4yj8d")
 
 [node name="PlanetStatusPanel" type="PanelContainer" parent="." unique_id=927527801]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -276.0
@@ -243,8 +244,8 @@ text = "Refresh"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="ShopPanel" type="PanelContainer" parent="." unique_id=27242064]
 unique_name_in_owner = true
@@ -548,8 +549,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 42)
 layout_mode = 2
 size_flags_horizontal = 3
-disabled = true
 theme_override_font_sizes/font_size = 14
+disabled = true
 text = "Combine"
 
 [node name="SellButton" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/WeaponActions" unique_id=39750568]
@@ -557,8 +558,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 42)
 layout_mode = 2
 size_flags_horizontal = 3
-disabled = true
 theme_override_font_sizes/font_size = 14
+disabled = true
 text = "Sell"
 
 [node name="ShopStatsLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow" unique_id=542371586]
@@ -572,17 +573,19 @@ text = "Stats"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="GameOverButton" type="Button" parent="." unique_id=516058947]
 unique_name_in_owner = true
-visible = false
 process_mode = 3
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 28
-text = "GAME OVER\nPlanet destroyed\nClick to return to main menu"
+text = "GAME OVER
+Planet destroyed
+Click to return to main menu"
