@@ -29,6 +29,10 @@ func _draw() -> void:
 		if enemy is Node2D:
 			_draw_marker(enemy.global_position, center, scale, Color(1.0, 0.2, 0.18), 3.0)
 
+	for boss in get_tree().get_nodes_in_group("minimap_boss"):
+		if boss is Node2D:
+			_draw_marker(boss.global_position, center, scale, Color(1.0, 0.12, 0.08), 5.0)
+
 	for scrap in get_tree().get_nodes_in_group("minimap_scrap"):
 		if scrap is Node2D:
 			_draw_marker(scrap.global_position, center, scale, Color(1.0, 0.82, 0.22), 2.0)

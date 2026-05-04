@@ -21,6 +21,7 @@ var is_destroyed := false
 var attack_cooldown_remaining := 0.0
 
 func _ready() -> void:
+	add_to_group("enemies")
 	add_to_group("minimap_enemy")
 	health = max_health
 	setup_body_sprite()
@@ -72,6 +73,7 @@ func spawn_damage_text(amount: float, is_critical: bool) -> void:
 
 func destroy() -> void:
 	is_destroyed = true
+	remove_from_group("enemies")
 	remove_from_group("minimap_enemy")
 	disable_hitbox()
 	call_deferred("drop_scrap", get_parent(), global_position)

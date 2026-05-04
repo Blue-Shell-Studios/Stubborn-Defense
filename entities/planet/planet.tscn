@@ -1791,3 +1791,17 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_mwkmv")
 autoplay = "default"
 frame_progress = 0.80082715
+
+[node name="ShieldMid" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.4392157)
+scale = Vector2(3.4, 3.4)
+sprite_frames = SubResource("SpriteFrames_mwkmv")
+autoplay = "default"
+
+[node name="ShieldOuter" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.4392157)
+scale = Vector2(3.8, 3.8)
+sprite_frames = SubResource("SpriteFrames_mwkmv")
+autoplay = "default"

@@ -94,7 +94,7 @@ func gain_exp(value: float) -> void:
 func get_exp_gain_multiplier() -> float:
 	return 1.0 + exp_gain_bonus
 
-func take_damage(amount: float) -> void:
+func take_damage(amount: float, _is_critical: bool = false) -> void:
 	if is_downed:
 		return
 
@@ -102,6 +102,8 @@ func take_damage(amount: float) -> void:
 		return
 
 	var final_damage := maxf(amount - armor, 0.0)
+	if final_damage > 0.0:
+		SignalBus.player_hit.emit(final_damage)
 	health = maxf(health - final_damage, 0.0)
 	SignalBus.player_health_changed.emit(health, max_hp)
 	SignalBus.player_stats_changed.emit(get_stats_snapshot())

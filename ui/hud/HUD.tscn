@@ -6,9 +6,49 @@
 [ext_resource type="Script" uid="uid://cfk5jmaq72gxg" path="res://ui/hud/shop_panel.gd" id="4_shop"]
 [ext_resource type="Script" uid="uid://bencwocyrjt33" path="res://ui/hud/level_up_panel.gd" id="5_level"]
 [ext_resource type="Script" uid="uid://pu0tmd6ihc4h" path="res://ui/hud/planet_status_panel.gd" id="6_planet"]
+[ext_resource type="Script" uid="uid://s8mb88iv22lb" path="res://ui/hud/boss_status_panel.gd" id="7_boss"]
+[ext_resource type="Script" uid="uid://bvp7xwk3ntfym" path="res://ui/hud/shield_stack_bar.gd" id="8_shield_stack"]
+[ext_resource type="Shader" uid="uid://c5b58wu40jtwb" path="res://shaders/damage_vignette.gdshader" id="9_damage_vignette"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_damage_vignette"]
+shader = ExtResource("9_damage_vignette")
+shader_parameter/flash_color = Color(1, 0.12, 0.08, 1)
+shader_parameter/thickness = 0.1
+shader_parameter/softness = 0.06
+shader_parameter/intensity = 0.0
 
 [node name="HUD" type="CanvasLayer" unique_id=1507560053]
 script = ExtResource("1_grlcq")
+
+[node name="CinematicLabel" type="Label" parent="." unique_id=1238906341]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -420.0
+offset_top = 28.0
+offset_right = 420.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.98, 0.98, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageVignette" type="ColorRect" parent="." unique_id=192283534]
+unique_name_in_owner = true
+process_mode = 3
+material = SubResource("ShaderMaterial_damage_vignette")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="StatsPanel" type="PanelContainer" parent="." unique_id=513745585]
 offset_left = 16.0
@@ -84,9 +124,10 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -276.0
-offset_top = 16.0
+offset_top = 15.0
 offset_right = -16.0
-offset_bottom = 126.0
+offset_bottom = 115.0
+grow_horizontal = 0
 script = ExtResource("6_planet")
 
 [node name="MarginContainer" type="MarginContainer" parent="PlanetStatusPanel" unique_id=454354432]
@@ -123,20 +164,70 @@ text = "Planet HP: 1000 / 1000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlanetShieldBar" type="ProgressBar" parent="PlanetStatusPanel/MarginContainer/PlanetStats" unique_id=674190623]
+[node name="PlanetShieldBar" type="Control" parent="PlanetStatusPanel/MarginContainer/PlanetStats" unique_id=674190623]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 22)
 layout_mode = 2
-show_percentage = false
 
-[node name="Label" type="Label" parent="PlanetStatusPanel/MarginContainer/PlanetStats/PlanetShieldBar" unique_id=527557154]
+[node name="PlanetShieldStackBar" type="Control" parent="PlanetStatusPanel/MarginContainer/PlanetStats/PlanetShieldBar" unique_id=203808925]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_shield_stack")
+
+[node name="Label" type="Label" parent="PlanetStatusPanel/MarginContainer/PlanetStats/PlanetShieldBar" unique_id=1958563706]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 2.0
 offset_right = 234.0
 offset_bottom = 20.0
 theme_override_font_sizes/font_size = 14
-text = "Shield: 250 / 250"
+text = "Shield"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BossStatusPanel" type="PanelContainer" parent="." unique_id=2089847052]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -66.0
+offset_right = 280.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("7_boss")
+
+[node name="MarginContainer" type="MarginContainer" parent="BossStatusPanel" unique_id=234932560]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="BossContent" type="VBoxContainer" parent="BossStatusPanel/MarginContainer" unique_id=760341433]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BossHealthBar" type="ProgressBar" parent="BossStatusPanel/MarginContainer/BossContent" unique_id=1167050391]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(520, 34)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="BossStatusPanel/MarginContainer/BossContent/BossHealthBar" unique_id=314645380]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 514.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 18
+text = "BOSS: 900 / 900"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -320,9 +411,20 @@ theme_override_constants/separation = 8
 
 [node name="OfferImage1" type="ColorRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header" unique_id=720160845]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 color = Color(0.18, 0.2, 0.26, 1)
+
+[node name="OfferIcon1" type="TextureRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header/OfferImage1" unique_id=1407738564]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="HeaderText" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header" unique_id=725995388]
 layout_mode = 2
@@ -341,13 +443,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "-"
 
-[node name="OfferDetails1" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent" unique_id=648011174]
+[node name="OfferLockButton1" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent/Header" unique_id=1935579746]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+text = "🔓"
+
+[node name="OfferDetails1" type="RichTextLabel" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent" unique_id=648011174]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 13
 text = "-"
-autowrap_mode = 3
 
 [node name="OfferBuyButton1" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard1/MarginContainer/OfferContent" unique_id=474139528]
 unique_name_in_owner = true
@@ -380,9 +488,20 @@ theme_override_constants/separation = 8
 
 [node name="OfferImage2" type="ColorRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header" unique_id=761189356]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 color = Color(0.18, 0.2, 0.26, 1)
+
+[node name="OfferIcon2" type="TextureRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header/OfferImage2" unique_id=2010268172]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="HeaderText" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header" unique_id=743623211]
 layout_mode = 2
@@ -401,13 +520,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "-"
 
-[node name="OfferDetails2" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent" unique_id=242274389]
+[node name="OfferLockButton2" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent/Header" unique_id=517290447]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+text = "🔓"
+
+[node name="OfferDetails2" type="RichTextLabel" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent" unique_id=242274389]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 13
 text = "-"
-autowrap_mode = 3
 
 [node name="OfferBuyButton2" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard2/MarginContainer/OfferContent" unique_id=816098141]
 unique_name_in_owner = true
@@ -440,9 +565,20 @@ theme_override_constants/separation = 8
 
 [node name="OfferImage3" type="ColorRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header" unique_id=212369837]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 color = Color(0.18, 0.2, 0.26, 1)
+
+[node name="OfferIcon3" type="TextureRect" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header/OfferImage3" unique_id=1117278922]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="HeaderText" type="VBoxContainer" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header" unique_id=956129725]
 layout_mode = 2
@@ -461,13 +597,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "-"
 
-[node name="OfferDetails3" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent" unique_id=804114835]
+[node name="OfferLockButton3" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent/Header" unique_id=494840866]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+text = "🔓"
+
+[node name="OfferDetails3" type="RichTextLabel" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent" unique_id=804114835]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 13
 text = "-"
-autowrap_mode = 3
 
 [node name="OfferBuyButton3" type="Button" parent="ShopPanel/MarginContainer/ShopContent/MainRow/ShopLeft/Offers/OfferCard3/MarginContainer/OfferContent" unique_id=815706951]
 unique_name_in_owner = true
@@ -562,11 +704,10 @@ theme_override_font_sizes/font_size = 14
 disabled = true
 text = "Sell"
 
-[node name="ShopStatsLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent/MainRow" unique_id=542371586]
+[node name="ShopStatsLabel" type="RichTextLabel" parent="ShopPanel/MarginContainer/ShopContent/MainRow" unique_id=542371586]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
 text = "Stats"
 
 [node name="ShopMessageLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent" unique_id=1994621119]
@@ -587,5 +728,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 28
 text = "GAME OVER
-Planet destroyed
+  Planet destroyed
+  Click to return to main menu"
+
+[node name="GameWinButton" type="Button" parent="." unique_id=833020154]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "YOU WIN
+Boss defeated
 Click to return to main menu"

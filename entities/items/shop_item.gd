@@ -2,15 +2,16 @@ class_name ShopItem extends Resource
 
 const TIER_MULTIPLIERS := {
 	0: 1.0,
-	1: 1.35,
-	2: 1.8,
-	3: 2.4,
-	4: 3.2,
+	1: 1.25,
+	2: 1.6,
+	3: 2.1,
+	4: 2.7,
 }
 
 @export var item_id := ""
 @export var display_name := "Item"
 @export_multiline var description := ""
+@export var icon: Texture2D
 @export var base_cost := 10
 @export var stat_modifiers := {}
 @export_range(0, 4, 1) var tier := 0
@@ -19,6 +20,7 @@ func setup(
 	new_item_id: String,
 	new_display_name: String,
 	new_description: String,
+	new_icon: Texture2D,
 	new_base_cost: int,
 	new_stat_modifiers: Dictionary,
 	new_tier: int
@@ -26,13 +28,14 @@ func setup(
 	item_id = new_item_id
 	display_name = new_display_name
 	description = new_description
+	icon = new_icon
 	base_cost = new_base_cost
 	stat_modifiers = new_stat_modifiers
 	tier = clampi(new_tier, 0, 4)
 	return self
 
 func get_cost() -> int:
-	return ceili(base_cost * pow(tier + 1, 1.45))
+	return ceili(base_cost * pow(tier + 1, 1.65))
 
 func get_scaled_stat_modifiers() -> Dictionary:
 	var scaled_stats := {}
@@ -43,9 +46,8 @@ func get_scaled_stat_modifiers() -> Dictionary:
 	return scaled_stats
 
 func get_shop_text() -> String:
-	return "%s\nTier %d\n%s\n%d Scrap" % [
+	return "%s\n%s\n%d Scrap" % [
 		display_name,
-		tier,
 		get_stat_summary(),
 		get_cost(),
 	]

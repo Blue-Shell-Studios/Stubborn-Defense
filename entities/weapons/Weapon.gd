@@ -9,17 +9,17 @@ const TIER_OUTLINE_COLORS := {
 }
 const TIER_DAMAGE_MULTIPLIERS := {
 	0: 1.0,
-	1: 1.25,
-	2: 1.6,
-	3: 2.1,
-	4: 3.0,
+	1: 1.2,
+	2: 1.5,
+	3: 1.9,
+	4: 2.5,
 }
 const TIER_COOLDOWN_MULTIPLIERS := {
 	0: 1.0,
-	1: 0.9,
-	2: 0.78,
-	3: 0.65,
-	4: 0.5,
+	1: 0.92,
+	2: 0.82,
+	3: 0.7,
+	4: 0.6,
 }
 
 @export_range(0, 4, 1) var tier := 0:
