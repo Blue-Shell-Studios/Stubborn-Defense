@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxx1wt1yu1g50"
-path="res://.godot/imported/torpedo icon.png-bfbf8694ba009786467d9dec73d9e6ee.ctex"
+uid="uid://kv4afadk1k8p"
+path="res://.godot/imported/Star Atlas.png-dc6dc1d386472e0976c4690a9d8fea0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/shop_icons/weapon_shop_icons/torpedo icon.png"
-dest_files=["res://.godot/imported/torpedo icon.png-bfbf8694ba009786467d9dec73d9e6ee.ctex"]
+source_file="res://asset/shop_icons/item_icons/Star Atlas.png"
+dest_files=["res://.godot/imported/Star Atlas.png-dc6dc1d386472e0976c4690a9d8fea0f.ctex"]
 
 [params]
 

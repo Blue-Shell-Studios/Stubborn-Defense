@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbsxdtnkb27ju"
-path="res://.godot/imported/laser icon.png-8312e1b9e135b0f8cba81e6defb1ebe8.ctex"
+uid="uid://03ss1vyo4uvd"
+path="res://.godot/imported/Solar Sail Tuning.png-c1bf591f9ebfc1314d7212f78ea38861.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/shop_icons/weapon_shop_icons/laser icon.png"
-dest_files=["res://.godot/imported/laser icon.png-8312e1b9e135b0f8cba81e6defb1ebe8.ctex"]
+source_file="res://asset/shop_icons/upgrade_icon/Solar Sail Tuning.png"
+dest_files=["res://.godot/imported/Solar Sail Tuning.png-c1bf591f9ebfc1314d7212f78ea38861.ctex"]
 
 [params]
 

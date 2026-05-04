@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuvb0e4lfv0cn"
-path="res://.godot/imported/basic cannon icon.png-6ad185425cb534f726fff21f3b97dd1a.ctex"
+uid="uid://dohos21jqrmnm"
+path="res://.godot/imported/Blazar energy cube.png-d837ae5790e34c1fde44fb8180305f42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/shop_icons/weapon_shop_icons/basic cannon icon.png"
-dest_files=["res://.godot/imported/basic cannon icon.png-6ad185425cb534f726fff21f3b97dd1a.ctex"]
+source_file="res://asset/shop_icons/item_icons/Blazar energy cube.png"
+dest_files=["res://.godot/imported/Blazar energy cube.png-d837ae5790e34c1fde44fb8180305f42.ctex"]
 
 [params]
 
