@@ -29,3 +29,4 @@ func switch_stage(stage_type: GameStage.Type) ->void:
 	
 	current_stage = STAGES[stage_type].instantiate()
 	current_scene.add_child(current_stage)
+	GameFlowManager.on_stage_switched(stage_type)

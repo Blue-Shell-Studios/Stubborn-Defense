@@ -13,6 +13,7 @@ func setup(stats: Dictionary) -> void:
 	is_critical = stats.get("is_critical", is_critical)
 	max_range = stats.get("range", max_range)
 	speed = stats.get("speed", speed)
+	distance_traveled = 0.0
 	global_rotation = direction.angle()
 
 func _physics_process(delta: float) -> void:

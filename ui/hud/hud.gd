@@ -40,19 +40,15 @@ func _on_player_revive_countdown_changed(seconds_left: int) -> void:
 func _on_game_over_triggered() -> void:
 	revive_countdown_label.visible = false
 	game_over_button.visible = true
-	get_tree().paused = true
 
 func _on_game_over_button_pressed() -> void:
-	get_tree().paused = false
 	GameStateManager.switch_stage(GameStage.Type.MAIN_MENU)
 
 func _on_game_win_triggered() -> void:
 	revive_countdown_label.visible = false
 	game_win_button.visible = true
-	get_tree().paused = true
 
 func _on_game_win_button_pressed() -> void:
-	get_tree().paused = false
 	GameStateManager.switch_stage(GameStage.Type.MAIN_MENU)
 
 func _on_cinematic_message_requested(message: String, duration: float) -> void:

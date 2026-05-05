@@ -1,16 +1,27 @@
 [gd_scene format=3 uid="uid://ckhr8suodxb6g"]
 
 [ext_resource type="Script" uid="uid://gh01hvvisy0r" path="res://game_stages/main_menu/main_menu.gd" id="1_skiaa"]
+[ext_resource type="Texture2D" uid="uid://du77qvu6trdas" path="res://asset/Stubborn Defense Title Card.png" id="2_igpou"]
 
 [node name="MainMenu" type="Node2D" unique_id=1046093577]
 script = ExtResource("1_skiaa")
 metadata/_custom_type_script = "uid://snktbelgrsgm"
+
+[node name="Background" type="TextureRect" parent="." unique_id=2142758363]
+offset_right = 1151.0
+offset_bottom = 649.0
+texture = ExtResource("2_igpou")
+expand_mode = 2
 
 [node name="StartScreen" type="Control" parent="." unique_id=1391776321]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 571.0
+offset_top = 464.0
+offset_right = 571.0
+offset_bottom = 464.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -19,6 +30,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -54.0
+offset_right = 110.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -27,14 +42,8 @@ layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Title" type="Label" parent="StartScreen/CenterContainer/Menu" unique_id=1865666473]
-layout_mode = 2
-theme_override_font_sizes/font_size = 42
-text = "Stubborn Defense"
-horizontal_alignment = 1
-
 [node name="PlayButton" type="Button" parent="StartScreen/CenterContainer/Menu" unique_id=2003121336]
-custom_minimum_size = Vector2(220, 48)
+custom_minimum_size = Vector2(400, 48)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Play"

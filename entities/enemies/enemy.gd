@@ -13,6 +13,7 @@ const DamageTextScene := preload("res://ui/damage_text/damage_text.tscn")
 @export var rotation_speed := 8.0
 
 @onready var vessel: Area2D = get_node_or_null("Vessel") as Area2D
+@onready var engine_sprite: AnimatedSprite2D = get_node_or_null("Vessel/EngineSprite") as AnimatedSprite2D
 @onready var body_sprite: AnimatedSprite2D = get_node_or_null("Vessel/BodySprite") as AnimatedSprite2D
 @onready var vessel_collision: CollisionShape2D = get_node_or_null("Vessel/CollisionShape2D") as CollisionShape2D
 
@@ -24,6 +25,19 @@ func _ready() -> void:
 	add_to_group("enemies")
 	add_to_group("minimap_enemy")
 	health = max_health
+	setup_body_sprite()
+
+func on_spawn(_init: Dictionary = {}) -> void:
+	# Called when reusing an instance (pooling may be reintroduced later).
+	is_destroyed = false
+	attack_cooldown_remaining = 0.0
+	health = max_health
+	velocity = Vector2.ZERO
+	add_to_group("enemies")
+	add_to_group("minimap_enemy")
+	if engine_sprite:
+		engine_sprite.visible = true
+	_enable_hitbox()
 	setup_body_sprite()
 
 func setup_body_sprite() -> void:
@@ -39,6 +53,27 @@ func setup_body_sprite() -> void:
 
 func tick_enemy(delta: float) -> void:
 	attack_cooldown_remaining = maxf(attack_cooldown_remaining - delta, 0.0)
+
+func update_movement_visuals() -> void:
+	# Engine animation shows only when moving.
+	if not engine_sprite or not engine_sprite.sprite_frames:
+		return
+
+	var is_moving := velocity.length_squared() > 25.0 # ~5px/s threshold
+	if is_moving and engine_sprite.sprite_frames.has_animation("moving"):
+		if engine_sprite.animation != &"moving" or not engine_sprite.is_playing():
+			engine_sprite.visible = true
+			engine_sprite.play("moving")
+		return
+
+	# Idle: either play a default/idle animation if provided, or hide.
+	if engine_sprite.sprite_frames.has_animation("default"):
+		engine_sprite.visible = false
+		if engine_sprite.animation != &"default":
+			engine_sprite.play("default")
+	else:
+		engine_sprite.visible = false
+		engine_sprite.stop()
 
 func get_current_target() -> Node2D:
 	var planet := get_tree().get_first_node_in_group("planet_objective") as Node2D
@@ -75,6 +110,8 @@ func destroy() -> void:
 	is_destroyed = true
 	remove_from_group("enemies")
 	remove_from_group("minimap_enemy")
+	if engine_sprite:
+		engine_sprite.visible = false
 	disable_hitbox()
 	call_deferred("drop_scrap", get_parent(), global_position)
 
@@ -92,6 +129,13 @@ func disable_hitbox() -> void:
 		vessel.set_deferred("monitoring", false)
 	if vessel_collision:
 		vessel_collision.set_deferred("disabled", true)
+
+func _enable_hitbox() -> void:
+	if vessel:
+		vessel.set_deferred("monitorable", true)
+		vessel.set_deferred("monitoring", true)
+	if vessel_collision:
+		vessel_collision.set_deferred("disabled", false)
 
 func drop_scrap(drop_parent: Node, drop_position: Vector2) -> void:
 	if not drop_parent:

@@ -3,11 +3,84 @@
 [ext_resource type="Script" uid="uid://dq5otvw52vxm5" path="res://entities/enemies/shooter/shooter_enemy.gd" id="1_shooter"]
 [ext_resource type="Texture2D" uid="uid://cm6j133geue3g" path="res://asset/enemies/shooter/Nairan - Bomber - Base.png" id="2_4wahk"]
 [ext_resource type="Texture2D" uid="uid://bu6f2miga15ot" path="res://asset/enemies/shooter/Nairan - Bomber -  Destruction.png" id="2_q1kkm"]
+[ext_resource type="Texture2D" uid="uid://dld4xrrqr76kl" path="res://asset/enemies/shooter/Nairan - Bomber - Engine.png" id="2_q58p7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_root"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vessel"]
 radius = 16.62077
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q66w"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdefh"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxccn"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8tjs"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohh7u"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hag4q"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnnq2"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2hq2"]
+atlas = ExtResource("2_q58p7")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5bu0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5q66w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdefh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxccn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8tjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohh7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hag4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnnq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2hq2")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 12.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q58p7"]
 atlas = ExtResource("2_q1kkm")
@@ -159,6 +232,10 @@ position = Vector2(-1.5, 0)
 shape = SubResource("CircleShape2D_vessel")
 
 [node name="EngineSprite" type="AnimatedSprite2D" parent="Vessel" unique_id=334942609]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_5bu0w")
+animation = &"moving"
+autoplay = "default"
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="Vessel" unique_id=1802600963]
 rotation = 1.5707964

@@ -1,9 +1,17 @@
 class_name ShooterEnemy extends Enemy
 
+enum State { CHASE, ATTACK }
+
 @export var projectile_scene: PackedScene = preload("res://entities/projectiles/enemy_round_projectile.tscn")
 @export var projectile_speed := 360.0
 @export var projectile_range := 620.0
 @export var projectile_spawn_distance := 22.0
+
+var state := State.CHASE
+
+func on_spawn(init: Dictionary = {}) -> void:
+	super(init)
+	state = State.CHASE
 
 func _physics_process(delta: float) -> void:
 	if is_destroyed:
@@ -22,12 +30,19 @@ func _physics_process(delta: float) -> void:
 
 	face_direction(target_direction, delta)
 
-	if target_distance <= attack_range:
-		velocity = Vector2.ZERO
-		try_attack(target)
-	else:
-		velocity = target_direction * move_speed
+	match state:
+		State.CHASE:
+			if target_distance <= attack_range:
+				state = State.ATTACK
+			else:
+				velocity = target_direction * move_speed
+		State.ATTACK:
+			velocity = Vector2.ZERO
+			try_attack(target)
+			if target_distance > attack_range:
+				state = State.CHASE
 
+	update_movement_visuals()
 	move_and_slide()
 
 func try_attack(target: Node2D) -> void:

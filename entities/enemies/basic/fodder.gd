@@ -1,8 +1,16 @@
 extends Enemy
 
+enum State { CHASE, ATTACK }
+
 @export var attack_flash_duration := 0.18
 
 var attack_flash_remaining := 0.0
+var state := State.CHASE
+
+func on_spawn(init: Dictionary = {}) -> void:
+	super(init)
+	attack_flash_remaining = 0.0
+	state = State.CHASE
 
 func _physics_process(delta: float) -> void:
 	if is_destroyed:
@@ -24,12 +32,19 @@ func _physics_process(delta: float) -> void:
 
 	face_direction(target_direction, delta)
 
-	if target_distance <= attack_range:
-		velocity = Vector2.ZERO
-		try_attack(target)
-	else:
-		velocity = target_direction * move_speed
+	match state:
+		State.CHASE:
+			if target_distance <= attack_range:
+				state = State.ATTACK
+			else:
+				velocity = target_direction * move_speed
+		State.ATTACK:
+			velocity = Vector2.ZERO
+			try_attack(target)
+			if target_distance > attack_range:
+				state = State.CHASE
 
+	update_movement_visuals()
 	move_and_slide()
 
 func _draw() -> void:

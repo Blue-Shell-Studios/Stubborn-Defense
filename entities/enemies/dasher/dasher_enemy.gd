@@ -31,6 +31,17 @@ func _ready() -> void:
 	_dash_outline_material.set_shader_parameter("outline_color", dash_outline_color)
 	_dash_outline_material.set_shader_parameter("outline_size", dash_outline_size)
 
+func on_spawn(init: Dictionary = {}) -> void:
+	super(init)
+	state = State.CHASE
+	charge_remaining = 0.0
+	recover_remaining = 0.0
+	dash_remaining_distance = 0.0
+	dash_direction = Vector2.ZERO
+	dash_has_hit = false
+	_set_charging_visuals(false)
+	_set_dash_outline(false)
+
 func _physics_process(delta: float) -> void:
 	if is_destroyed:
 		return
@@ -56,10 +67,12 @@ func _physics_process(delta: float) -> void:
 				_start_charge(dir)
 			else:
 				velocity = dir * move_speed
+				update_movement_visuals()
 				move_and_slide()
 
 		State.CHARGE:
 			velocity = Vector2.ZERO
+			update_movement_visuals()
 
 			var dir := global_position.direction_to(target.global_position)
 			face_direction(dir, delta)
@@ -77,6 +90,7 @@ func _physics_process(delta: float) -> void:
 				return
 
 			velocity = dash_direction * dash_speed
+			update_movement_visuals()
 			move_and_slide()
 
 			dash_remaining_distance = maxf(dash_remaining_distance - (dash_speed * delta), 0.0)
@@ -94,6 +108,7 @@ func _physics_process(delta: float) -> void:
 			_set_charging_visuals(false)
 			_set_dash_outline(false)
 			velocity = Vector2.ZERO
+			update_movement_visuals()
 			move_and_slide()
 
 			recover_remaining = maxf(recover_remaining - delta, 0.0)

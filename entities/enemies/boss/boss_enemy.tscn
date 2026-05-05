@@ -1,13 +1,83 @@
 [gd_scene format=3 uid="uid://c8h3qkq5f2r4u"]
 
-[ext_resource type="Script" path="res://entities/enemies/boss/boss_enemy.gd" id="1_boss"]
-[ext_resource type="Texture2D" uid="uid://bbdxk6nj4itje" path="res://asset/enemies/fodder/Nairan - Fighter - Base.png" id="2_base"]
+[ext_resource type="Script" uid="uid://brxi1cvsbdji8" path="res://entities/enemies/boss/boss_enemy.gd" id="1_boss"]
+[ext_resource type="Texture2D" uid="uid://cgovmls1iq2u7" path="res://asset/enemies/boss/Nairan - Battlecruiser - Engine.png" id="2_o376h"]
 [ext_resource type="Texture2D" uid="uid://cc107kaoboy3d" path="res://asset/enemies/fodder/Nairan - Fighter -  Destruction.png" id="3_explode"]
+[ext_resource type="Texture2D" uid="uid://ex111oelqr71" path="res://asset/enemies/boss/Nairan - Battlecruiser - Base.png" id="3_xnhfu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_root"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vessel"]
-radius = 28.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_s38gu"]
+atlas = ExtResource("2_o376h")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ek4m"]
+atlas = ExtResource("2_o376h")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsu7s"]
+atlas = ExtResource("2_o376h")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkrn8"]
+atlas = ExtResource("2_o376h")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufgp4"]
+atlas = ExtResource("2_o376h")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgkwe"]
+atlas = ExtResource("2_o376h")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab084"]
+atlas = ExtResource("2_o376h")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kkst"]
+atlas = ExtResource("2_o376h")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_055s7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s38gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ek4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsu7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkrn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufgp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgkwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab084")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kkst")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 12.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0"]
 atlas = ExtResource("3_explode")
@@ -81,10 +151,6 @@ region = Rect2(1024, 0, 64, 64)
 atlas = ExtResource("3_explode")
 region = Rect2(1088, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle"]
-atlas = ExtResource("2_base")
-region = Rect2(0, 0, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_boss"]
 animations = [{
 "frames": [{
@@ -148,14 +214,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle")
+"texture": ExtResource("3_xnhfu")
 }],
 "loop": false,
 "name": &"idle",
 "speed": 5.0
 }]
 
-[node name="BossEnemy" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o376h"]
+size = Vector2(181, 110)
+
+[node name="BossEnemy" type="CharacterBody2D" unique_id=290837677]
 script = ExtResource("1_boss")
 max_health = 900.0
 scrap_drop_count = 40
@@ -165,26 +234,30 @@ attack_range = 0.0
 attack_damage = 18.0
 attack_cooldown = 0.35
 rotation_speed = 4.0
-planet_attack_range = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=356373861]
 shape = SubResource("CircleShape2D_root")
 disabled = true
 
-[node name="Vessel" type="Area2D" parent="."]
+[node name="Vessel" type="Area2D" parent="." unique_id=1031773904]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vessel"]
-position = Vector2(-1.5, 0)
-shape = SubResource("CircleShape2D_vessel")
+[node name="EngineSprite" type="AnimatedSprite2D" parent="Vessel" unique_id=754153898]
+rotation = 1.5707964
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_055s7")
+animation = &"moving"
+autoplay = "default"
+frame_progress = 0.42476276
 
-[node name="EngineSprite" type="AnimatedSprite2D" parent="Vessel"]
-
-[node name="BodySprite" type="AnimatedSprite2D" parent="Vessel"]
+[node name="BodySprite" type="AnimatedSprite2D" parent="Vessel" unique_id=2723267]
 rotation = 1.5707964
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_boss")
-animation = &"explode"
+animation = &"idle"
 autoplay = "idle"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vessel" unique_id=1661173496]
+position = Vector2(12.5, 0)
+shape = SubResource("RectangleShape2D_o376h")

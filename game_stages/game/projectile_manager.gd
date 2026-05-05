@@ -10,7 +10,9 @@ func spawn_projectile(projectile_scene: PackedScene, spawn_position: Vector2, st
 
 	var projectile := projectile_scene.instantiate()
 	add_child(projectile)
-	projectile.global_position = spawn_position
-
+	if projectile is Node2D:
+		projectile.global_position = spawn_position
+	elif projectile is Control:
+		projectile.global_position = spawn_position
 	if projectile.has_method("setup"):
-		projectile.setup(stats)
+		projectile.call("setup", stats)

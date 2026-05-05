@@ -4,8 +4,8 @@ extends GameStage
 
 func _ready() -> void:
 	type = Type.MAIN_MENU
-	get_viewport().size_changed.connect(update_start_screen_rect)
-	update_start_screen_rect()
+	#get_viewport().size_changed.connect(update_start_screen_rect)
+	#update_start_screen_rect()
 
 func update_start_screen_rect() -> void:
 	start_screen.position = Vector2.ZERO

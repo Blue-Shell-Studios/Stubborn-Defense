@@ -18,6 +18,7 @@ func setup(stats: Dictionary) -> void:
 	speed = stats.get("speed", speed)
 	max_range = stats.get("range", max_range)
 	radius = stats.get("radius", radius)
+	distance_traveled = 0.0
 	queue_redraw()
 
 func _physics_process(delta: float) -> void:
@@ -39,4 +40,3 @@ func _damage_target(target: Node) -> void:
 		target.take_damage(damage)
 
 	queue_free()
-

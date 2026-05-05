@@ -71,7 +71,7 @@ theme_override_constants/separation = 6
 [node name="LevelLabel" type="Label" parent="StatsPanel/MarginContainer/Stats" unique_id=153193506]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "Level: 1"
 
 [node name="HealthBar" type="ProgressBar" parent="StatsPanel/MarginContainer/Stats" unique_id=57948337]
@@ -340,7 +340,6 @@ autowrap_mode = 3
 
 [node name="ShopPanel" type="PanelContainer" parent="." unique_id=27242064]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -370,6 +369,14 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
 text = "Refresh: 30s"
+horizontal_alignment = 1
+
+[node name="ShopHelpLabel" type="Label" parent="ShopPanel/MarginContainer/ShopContent" unique_id=863372819]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Esc to close shop"
 horizontal_alignment = 1
 
 [node name="MainRow" type="HBoxContainer" parent="ShopPanel/MarginContainer/ShopContent" unique_id=669118463]

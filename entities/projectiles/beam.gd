@@ -19,6 +19,7 @@ func setup(stats: Dictionary) -> void:
 	max_range = stats.get("range", max_range)
 	beam_width = stats.get("width", beam_width)
 	lifetime = stats.get("lifetime", lifetime)
+	damaged_targets.clear()
 	global_rotation = direction.angle()
 	
 	stretch_animated_beam()

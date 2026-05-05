@@ -22,8 +22,12 @@ enum State {IDLE, MOVING}
 @export var shop_interaction_range := 260.0
 @export var revive_delay := 5.0
 
+@export var out_of_valid_area_damage_per_second := 12.0
+
 @onready var vessel: Area2D = $Vessel
 @onready var vessel_collision: CollisionShape2D = $Vessel/CollisionShape2D
+@onready var engine_sprite: AnimatedSprite2D = $Vessel/EngineSprite
+@onready var body_sprite: AnimatedSprite2D = $Vessel/BodySprite
 @onready var scrap_suction_area: Area2D = $ScrapSuctionArea
 @onready var scrap_suction_collision: CollisionShape2D = $ScrapSuctionArea/CollisionShape2D
 @onready var weapon_manager: WeaponManager = $Weapons
@@ -37,6 +41,7 @@ var level := 1
 var pending_level_ups := 0
 var can_open_shop := false
 var is_downed := false
+var _is_outside_valid_area := false
 
 func _ready() -> void:
 	add_to_group("player_target")
@@ -47,13 +52,40 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_downed:
 		velocity = Vector2.ZERO
+		_update_movement_visuals()
 		SignalBus.player_position_changed.emit(global_position)
 		return
 
+	if _is_outside_valid_area and out_of_valid_area_damage_per_second > 0.0:
+		_apply_environment_damage(out_of_valid_area_damage_per_second * delta)
+
 	manage_movement(delta)
 	move_and_slide()
+	_update_movement_visuals()
 	update_shop_availability()
 	SignalBus.player_position_changed.emit(global_position)
+
+func _update_movement_visuals() -> void:
+	if not is_instance_valid(engine_sprite) or not engine_sprite.sprite_frames:
+		return
+
+	var is_moving := velocity.length_squared() > 400.0 # ~20px/s
+	if is_moving and engine_sprite.sprite_frames.has_animation("moving"):
+		engine_sprite.visible = true
+		if engine_sprite.animation != &"moving" or not engine_sprite.is_playing():
+			engine_sprite.play("moving")
+		return
+
+	# Idle: hide engine (default animation is a blank frame in our sheet setup).
+	engine_sprite.visible = false
+	if engine_sprite.sprite_frames.has_animation("default") and engine_sprite.animation != &"default":
+		engine_sprite.play("default")
+
+	if is_instance_valid(body_sprite) and body_sprite.sprite_frames:
+		# Keep body on its base animation unless it's currently exploding.
+		if body_sprite.animation != &"explode":
+			if body_sprite.sprite_frames.has_animation("default") and body_sprite.animation != &"default":
+				body_sprite.play("default")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_downed:
@@ -109,6 +141,38 @@ func take_damage(amount: float, _is_critical: bool = false) -> void:
 	SignalBus.player_stats_changed.emit(get_stats_snapshot())
 	if health <= 0.0:
 		down_player()
+
+func _apply_environment_damage(amount: float) -> void:
+	# Environmental damage should not be dodged.
+	if is_downed:
+		return
+	if amount <= 0.0:
+		return
+
+	var final_damage := maxf(amount - armor, 0.0)
+	if final_damage <= 0.0:
+		return
+
+	SignalBus.player_hit.emit(final_damage)
+	health = maxf(health - final_damage, 0.0)
+	SignalBus.player_health_changed.emit(health, max_hp)
+	SignalBus.player_stats_changed.emit(get_stats_snapshot())
+	if health <= 0.0:
+		down_player()
+
+func heal(amount: float) -> float:
+	if is_downed:
+		return 0.0
+	if amount <= 0.0:
+		return 0.0
+
+	var old_health := health
+	health = clampf(health + amount, 0.0, max_hp)
+	var healed := health - old_health
+	if healed > 0.0:
+		SignalBus.player_health_changed.emit(health, max_hp)
+		SignalBus.player_stats_changed.emit(get_stats_snapshot())
+	return healed
 
 func down_player() -> void:
 	if is_downed:
@@ -276,3 +340,18 @@ func manage_movement(delta: float) -> void:
 	if velocity.length() > 20:
 		var target_angle = velocity.angle()
 		vessel.global_rotation = lerp_angle(vessel.global_rotation, target_angle, rotation_speed * delta)
+
+
+func _on_valid_area_area_exited(area: Area2D) -> void:
+	if area == vessel:
+		_is_outside_valid_area = true
+
+func _on_bounds_area_area_exited(area: Area2D) -> void:
+	if area == vessel and not is_downed:
+		take_damage(health)
+		down_player()
+
+
+func _on_valid_area_area_entered(area: Area2D) -> void:
+	if area == vessel:
+		_is_outside_valid_area = false

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b0ej7k5vsqnar"]
 
 [ext_resource type="Script" uid="uid://cad3ax4g8414" path="res://entities/enemies/basic/fodder.gd" id="1_aembp"]
+[ext_resource type="Texture2D" uid="uid://c6puwsh4d1p6m" path="res://asset/enemies/fodder/Nairan - Fighter - Engine.png" id="2_2f0v6"]
 [ext_resource type="Texture2D" uid="uid://bbdxk6nj4itje" path="res://asset/enemies/fodder/Nairan - Fighter - Base.png" id="2_a4do2"]
 [ext_resource type="Texture2D" uid="uid://cc107kaoboy3d" path="res://asset/enemies/fodder/Nairan - Fighter -  Destruction.png" id="2_hddoe"]
 
@@ -8,6 +9,78 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a4do2"]
 radius = 14.534442
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf7l6"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv7ss"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0668"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo15w"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp0we"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcb5x"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehc85"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7uxq"]
+atlas = ExtResource("2_2f0v6")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24orl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf7l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv7ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0668")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo15w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp0we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcb5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehc85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7uxq")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 12.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2f0v6"]
 atlas = ExtResource("2_hddoe")
@@ -171,6 +244,10 @@ position = Vector2(-1.5, 0)
 shape = SubResource("CircleShape2D_a4do2")
 
 [node name="EngineSprite" type="AnimatedSprite2D" parent="Vessel" unique_id=1723030414]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_24orl")
+animation = &"moving"
+autoplay = "default"
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="Vessel" unique_id=130602236]
 rotation = 1.5707964

@@ -170,8 +170,10 @@ func _on_shop_offers_changed(offers: Array, refresh_time_left: float, refresh_co
 			icon.visible = false
 		if offer_type == "item":
 			details_label.text = "%s\n%s" % [format_stat_summary_bb(offer.get("stat_modifiers", {})), escape_bbcode(offer.get("description", ""))]
-		else:
+		elif offer_type == "weapon":
 			details_label.text = format_weapon_stats_bb(offer.get("weapon_stats", {}))
+		else:
+			details_label.text = escape_bbcode(String(offer.get("description", "")))
 
 func _on_shop_weapons_changed(weapons: Array, selected_index: int) -> void:
 	for index in range(weapon_slot_buttons.size()):
@@ -244,10 +246,11 @@ func get_compact_weapon_name(weapon_name: String) -> String:
 
 func update_shop_stats() -> void:
 	shop_stats_label.text = "\n".join(PackedStringArray([
+		format_neutral_line("Scrap", "%d" % current_scrap),
+		"",
 		"[b]Stats[/b]",
 		format_compared_line("HP", "%d / %d" % [roundi(current_health), roundi(current_max_health)], current_health - current_max_health),
 		format_neutral_line("EXP", "%d / %d" % [roundi(current_exp), roundi(current_max_exp)]),
-		format_neutral_line("Scrap", "%d" % current_scrap),
 		format_compared_line("Max HP", "%d" % roundi(current_player_stats.get("max_hp", PLAYER_BASE_STATS["max_hp"])), current_player_stats.get("max_hp", PLAYER_BASE_STATS["max_hp"]) - PLAYER_BASE_STATS["max_hp"]),
 		format_compared_line("Damage", "%+d%%" % roundi(current_player_stats.get("damage_bonus_percent", 0.0)), current_player_stats.get("damage_bonus_percent", 0.0)),
 		format_compared_line("Attack Speed", "%+d%%" % roundi(current_player_stats.get("attack_speed_bonus_percent", 0.0)), current_player_stats.get("attack_speed_bonus_percent", 0.0)),

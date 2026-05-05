@@ -1,187 +1,16 @@
 class_name ShopManager extends Node
-
-const WEAPON_POOL := [
-	{
-		"id": "gatling_turret",
-		"name": "Gatling Turret",
-		"scene": preload("res://entities/weapons/gatling_turret/gatling_turret.tscn"),
-		"icon": "res://asset/shop_icons/weapon_icons/Basic Cannon 1.png",
-		"cost": 12,
-	},
-	{
-		"id": "torpedo_launcher",
-		"name": "Torpedo Launcher",
-		"scene": preload("res://entities/weapons/torpedo_launcher/torpedo_launcher.tscn"),
-		"icon": "res://asset/shop_icons/weapon_icons/Torpedo 1.png",
-		"cost": 24,
-	},
-	{
-		"id": "beam_emitter",
-		"name": "Beam Emitter",
-		"scene": preload("res://entities/weapons/beam_emitter/beam_emitter.tscn"),
-		"icon": "res://asset/shop_icons/weapon_icons/Laser.png",
-		"cost": 20,
-	},
-]
-const ITEM_POOL := [
-	{
-		"id": "nebula_plating",
-		"name": "Nebula Plating",
-		"description": "Layered hull panels tuned for long patrols.",
-		"cost": 10,
-		"stats": {"max_hp": 14.0, "armor": 1.0},
-		"icon": "res://asset/shop_icons/item_icons/Nebula Plating.png"
-	},
-	{
-		"id": "ion_overcharger",
-		"name": "Ion Overcharger",
-		"description": "Pushes extra current through weapon emitters.",
-		"cost": 14,
-		"stats": {"damage_bonus_percent": 6.0, "attack_speed_bonus_percent": -4.0},
-		"icon": "res://asset/shop_icons/item_icons/Ion Overcharger.png"
-	},
-	{
-		"id": "pulse_regulator",
-		"name": "Pulse Regulator",
-		"description": "Stabilizes firing cycles for quicker volleys.",
-		"cost": 13,
-		"stats": {"attack_speed_bonus_percent": 8.0},
-		"icon": "res://asset/shop_icons/item_icons/Pulse Regulator.png"
-	},
-	{
-		"id": "comet_lens",
-		"name": "Comet Lens",
-		"description": "Focuses weapon tracking beyond standard range.",
-		"cost": 12,
-		"stats": {"range": 30.0},
-		"icon": "res://asset/shop_icons/item_icons/Comet Lens.png"
-	},
-	{
-		"id": "void_targeter",
-		"name": "Void Targeter",
-		"description": "Highlights weak points in hostile hulls.",
-		"cost": 16,
-		"stats": {"crit_chance": 0.04, "crit_damage_multiplier": 0.12},
-		"icon": "res://asset/shop_icons/item_icons/Void Targeter.png"
-	},
-	{
-		"id": "phase_thrusters",
-		"name": "Phase Thrusters",
-		"description": "Adds erratic micro-jumps to your flight path.",
-		"cost": 15,
-		"stats": {"speed": 35.0, "dodge": 0.025},
-		"icon": "res://asset/shop_icons/item_icons/Phase Thrusters.png"
-	},
-	{
-		"id": "starfinder_core",
-		"name": "Starfinder Core",
-		"description": "Improves salvage scans and rare stock discovery.",
-		"cost": 18,
-		"stats": {"luck": 1.5},
-		"icon": "res://asset/shop_icons/item_icons/Starfinder Core.png"
-	},
-	{
-		"id": "sun_scepter",
-		"name": "Sun Scepter",
-		"description": "Infuse the power of the sun to weapons",
-		"cost": 15,
-		"stats": {"damage_bonus_percent": 10.0},
-		"icon": "res://asset/shop_icons/item_icons/Sun Scepter.png"
-	},
-	{
-		"id": "startouch_visor",
-		"name": "Startouch Visor",
-		"description": "Enhance field of vision",
-		"cost": 10,
-		"stats": {"range": 25.0},
-		"icon": "res://asset/shop_icons/item_icons/Startouch Visor.png"
-	},
-	{
-		"id": "star_atlas",
-		"name": "Star Atlas",
-		"description": "Maps out the location through the guidance of the stars",
-		"cost": 30,
-		"stats": {"range": 15.0, "luck": 4.0},
-		"icon": "res://asset/shop_icons/item_icons/Star Atlas.png"
-	},
-	{
-		"id": "dark_matter",
-		"name": "Dark Matter",
-		"description": "A highly valuable fuel throughout the cosmos",
-		"cost": 19,
-		"stats": {"attack_speed_bonus_percent": -6.0, "speed": 45.0},
-		"icon": "res://asset/shop_icons/item_icons/Dark Matter.png"
-	},
-	{
-		"id": "cosmic_core",
-		"name": "Cosmic Core",
-		"description": "Analyses enemy movement patterns increasing deadly stikes",
-		"cost": 13,
-		"stats": {"crit_chance": 0.07, "damage_bonus_percent": 3.0},
-		"icon": "res://asset/shop_icons/item_icons/Comet Lens.png"
-	},
-	{
-		"id": "time_warp",
-		"name": "Time Warp",
-		"description": "Creates time space fluctuations to pass through matter",
-		"cost": 16,
-		"stats": {"dodge": 0.05, "speed": 30.0},
-		"icon": "res://asset/shop_icons/item_icons/Time Warp.png"
-	},
-	{
-		"id": "astral_deflector",
-		"name": "Astral Deflector",
-		"description": "Defense system module that provides protection against astral forces",
-		"cost": 17,
-		"stats": {"max_hp": 6.0, "armor": 3.0},
-		"icon": "res://asset/shop_icons/item_icons/Astral Deflector.png"
-	},
-	{
-		"id": "pulsar_shot",
-		"name": "Pulsar Shot",
-		"description": "Weapon modification that mimics neutron star beams",
-		"cost": 14,
-		"stats": {"crit_chance": 0.09, "crit_damage_multiplier": 0.1},
-		"icon": "res://asset/shop_icons/item_icons/Pulsar Shot.png"
-	},
-	{
-		"id": "chaos_amulet",
-		"name": "Chaos Amulet",
-		"description": "Super dense compressed energy that bends probability",
-		"cost": 25,
-		"stats": {"luck": 3.0, "dodge": 0.02},
-		"icon": "res://asset/shop_icons/item_icons/Chaos Amulet.png"
-	},
-	{
-		"id": "structural_integrity_module",
-		"name": "Structural Integrity Module",
-		"description": "Creates a thin layer of energy field that absorb impacts",
-		"cost": 15,
-		"stats": {"armor": 3.0},
-		"icon": "res://asset/shop_icons/item_icons/Structural Integrity Module.png"
-	},
-	{
-		"id": "blazar_energy_cube",
-		"name": "Blazar energy cube",
-		"description": "Integrate gamma rays into weapons",
-		"cost": 12,
-		"stats": {"crit_damage_multiplier": 0.3},
-		"icon": "res://asset/shop_icons/item_icons/Blazar energy cube.png"
-	},
-	{
-		"id": "nanotech_system",
-		"name": "Nanotech System",
-		"description": "Micro repair technology that can transform into ship components",
-		"cost": 14,
-		"stats": {"max_hp": 20.0},
-		"icon": "res://asset/shop_icons/item_icons/Nanotech System.png"
-	}
-]
+const WEAPON_POOL := ShopCatalog.WEAPON_POOL
+const ITEM_POOL := ShopCatalog.ITEM_POOL
 
 @export var offer_count := 3
 @export var auto_refresh_interval := 30.0
 @export var manual_refresh_cost := 5
 @export_range(0.0, 1.0, 0.05) var weapon_offer_chance := 0.55
+@export_range(0.0, 1.0, 0.05) var heal_offer_chance := 0.35
+@export var heal_offer_cost := 18
+@export_range(0.0, 1.0, 0.05) var heal_offer_percent := 0.35
+
+const HEAL_OFFER_ICON := "res://asset/shop_icons/upgrade_icon/Hull Patch Protocol.png"
 
 var offers: Array[Dictionary] = []
 var refresh_time_left := 0.0
@@ -223,19 +52,16 @@ func toggle_shop() -> void:
 
 func _on_shop_visibility_changed(new_is_open: bool) -> void:
 	is_open = new_is_open
-	get_tree().paused = is_open
 	emit_shop_state()
 
 func open_shop() -> void:
 	is_open = true
-	get_tree().paused = true
 	selected_weapon_index = -1
 	SignalBus.shop_visibility_changed.emit(true)
 	emit_shop_state()
 
 func close_shop() -> void:
 	is_open = false
-	get_tree().paused = false
 	selected_weapon_index = -1
 	SignalBus.shop_visibility_changed.emit(false)
 	emit_shop_state()
@@ -330,7 +156,16 @@ func buy_offer(offer_index: int) -> void:
 		SignalBus.shop_message_changed.emit("Not enough scrap.")
 		return
 
-	if offer.get("type", "weapon") == "item":
+	var offer_type := String(offer.get("type", "weapon"))
+	if offer_type == "heal":
+		var heal_amount := float(offer.get("heal_amount", 0.0))
+		var healed := player.heal(heal_amount)
+		offers[offer_index] = {"empty": true}
+		if healed <= 0.0:
+			SignalBus.shop_message_changed.emit("Repairs failed.")
+		else:
+			SignalBus.shop_message_changed.emit("Repaired %d HP." % roundi(healed))
+	elif offer_type == "item":
 		player.apply_item(offer["item"])
 		offers[offer_index] = {"empty": true}
 		SignalBus.shop_message_changed.emit("Installed %s." % offer["name"])
@@ -405,10 +240,29 @@ func get_weapon_manager() -> WeaponManager:
 	return get_tree().get_first_node_in_group("player_weapon_manager") as WeaponManager
 
 func create_random_offer(tier: int) -> Dictionary:
+	var player := get_player()
+	if player and player.health < player.max_hp and randf() < heal_offer_chance:
+		return create_heal_offer(player)
+
 	if randf() < weapon_offer_chance:
 		return create_weapon_offer(WEAPON_POOL.pick_random(), tier)
 
 	return create_item_offer(ITEM_POOL.pick_random(), tier)
+
+func create_heal_offer(player: Player) -> Dictionary:
+	var icon := IconLoader.load_texture(HEAL_OFFER_ICON)
+	var heal_amount := maxf(player.max_hp * heal_offer_percent, 1.0)
+	return {
+		"empty": false,
+		"type": "heal",
+		"id": "heal",
+		"name": "Emergency Repairs",
+		"cost": heal_offer_cost,
+		"tier": 0,
+		"description": "Restore %d HP." % roundi(heal_amount),
+		"heal_amount": heal_amount,
+		"icon": icon,
+	}
 
 func create_weapon_offer(template: Dictionary, tier: int) -> Dictionary:
 	var weapon_stats := get_weapon_offer_stats(template, tier)
@@ -453,12 +307,7 @@ func create_item_offer(template: Dictionary, tier: int) -> Dictionary:
 	}
 	
 func _get_offer_icon(template: Dictionary) -> Texture2D:
-	var icon_path_val: String = template.get("icon")
-	var icon_path := icon_path_val as String if icon_path_val is String else ""
-	if icon_path.is_empty():
-		return null
-
-	return load(icon_path) as Texture2D
+	return IconLoader.load_texture(template.get("icon"))
 
 
 
@@ -506,17 +355,7 @@ func roll_offer_tier(luck: float) -> int:
 		2.0 * (1.0 + luck * 0.55),
 		0.5 * (1.0 + luck * 0.85),
 	]
-	var total_weight := 0.0
-	for weight in weights:
-		total_weight += maxf(weight, 0.0)
-
-	var roll := randf() * total_weight
-	for tier in range(weights.size()):
-		roll -= maxf(weights[tier], 0.0)
-		if roll <= 0.0:
-			return tier
-
-	return 0
+	return WeightedRoll.pick_index(weights)
 
 func get_offer_cost(base_cost: int, tier: int) -> int:
 	return ceili(base_cost * pow(tier + 1, 1.7))

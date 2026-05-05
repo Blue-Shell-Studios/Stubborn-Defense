@@ -7,7 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bejhrs0181h1r" path="res://ui/hud/HUD.tscn" id="6_d8lcn"]
 [ext_resource type="PackedScene" uid="uid://cyjibnxc8fxr6" path="res://entities/planet/planet.tscn" id="7_1gf4m"]
 [ext_resource type="Script" uid="uid://bd4ebcbop6se7" path="res://game_stages/game/shop_manager.gd" id="8_tnxhe"]
+[ext_resource type="Texture2D" uid="uid://bsdqswyyicxst" path="res://asset/mystery_fog.png" id="9_j2r6u"]
 [ext_resource type="Script" uid="uid://cm1qd34wsv11u" path="res://game_stages/game/level_up_manager.gd" id="9_level"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd6gi"]
+size = Vector2(2800, 2800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2r6u"]
+size = Vector2(3000, 3000)
 
 [node name="Game" type="Node2D" unique_id=398892491]
 script = ExtResource("1_s5mw4")
@@ -35,3 +42,111 @@ script = ExtResource("8_tnxhe")
 script = ExtResource("9_level")
 
 [node name="HUD" parent="." unique_id=632813108 instance=ExtResource("6_d8lcn")]
+
+[node name="ValidArea" type="Area2D" parent="." unique_id=533198713]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ValidArea" unique_id=995757593]
+position = Vector2(1500, 1500)
+shape = SubResource("RectangleShape2D_cd6gi")
+
+[node name="BoundsArea" type="Area2D" parent="." unique_id=1005291692]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundsArea" unique_id=1026511983]
+position = Vector2(1500, 1500)
+shape = SubResource("RectangleShape2D_j2r6u")
+
+[node name="Clouds" type="Node2D" parent="." unique_id=1635659085]
+
+[node name="TextureRect" type="TextureRect" parent="Clouds" unique_id=1651469902]
+offset_left = -219.0
+offset_top = 2613.0
+offset_right = 6487.0
+offset_bottom = 3396.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Clouds" unique_id=1968072086]
+offset_left = 113.0
+offset_top = 2612.0
+offset_right = 6819.0
+offset_bottom = 3395.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Clouds" unique_id=471492316]
+offset_left = 3020.0
+offset_top = 395.50027
+offset_right = 9726.0
+offset_bottom = 1178.5002
+rotation = 3.1415927
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Clouds" unique_id=948829923]
+offset_left = 3352.0
+offset_top = 394.50027
+offset_right = 10058.0
+offset_bottom = 1177.5002
+rotation = 3.1415927
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="Clouds" unique_id=395460062]
+offset_left = 376.50012
+offset_top = -367.99997
+offset_right = 7082.5
+offset_bottom = 414.99997
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="Clouds" unique_id=1765653777]
+offset_left = 380.50012
+offset_top = -68.99997
+offset_right = 7086.5
+offset_bottom = 714.0
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="Clouds" unique_id=73777000]
+offset_left = 2619.0002
+offset_top = 2876.0
+offset_right = 9325.0
+offset_bottom = 3659.0
+rotation = -1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="Clouds" unique_id=416770012]
+offset_left = 2623.0002
+offset_top = 3175.0
+offset_right = 9329.0
+offset_bottom = 3958.0
+rotation = -1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_j2r6u")
+expand_mode = 2
+stretch_mode = 1
+
+[connection signal="area_entered" from="ValidArea" to="Player" method="_on_valid_area_area_entered"]
+[connection signal="area_exited" from="ValidArea" to="Player" method="_on_valid_area_area_exited"]
+[connection signal="area_exited" from="BoundsArea" to="Player" method="_on_bounds_area_area_exited"]

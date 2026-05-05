@@ -15,6 +15,7 @@ func setup(stats: Dictionary) -> void:
 	damage = stats.get("damage", damage)
 	speed = stats.get("speed", speed)
 	max_range = stats.get("range", max_range)
+	distance_traveled = 0.0
 
 func _physics_process(delta: float) -> void:
 	var movement := direction * speed * delta

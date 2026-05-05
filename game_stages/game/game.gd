@@ -122,28 +122,32 @@ func _spawn_wave_enemy() -> void:
 		spawn_fodder()
 
 func spawn_fodder() -> void:
-	var fodder := FodderScene.instantiate()
+	var pos := get_random_edge_position()
+	var fodder := FodderScene.instantiate() as Enemy
 	add_child(fodder)
-	_apply_wave_scaling(fodder as Enemy)
-	fodder.global_position = get_random_edge_position()
+	fodder.global_position = pos
+	_apply_wave_scaling(fodder)
 
 func spawn_shooter() -> void:
-	var shooter := ShooterEnemyScene.instantiate()
+	var pos := get_random_edge_position()
+	var shooter := ShooterEnemyScene.instantiate() as Enemy
 	add_child(shooter)
-	_apply_wave_scaling(shooter as Enemy)
-	shooter.global_position = get_random_edge_position()
+	shooter.global_position = pos
+	_apply_wave_scaling(shooter)
 
 func spawn_dasher() -> void:
-	var dasher := DasherEnemyScene.instantiate()
+	var pos := get_random_edge_position()
+	var dasher := DasherEnemyScene.instantiate() as Enemy
 	add_child(dasher)
-	_apply_wave_scaling(dasher as Enemy)
-	dasher.global_position = get_random_edge_position()
+	dasher.global_position = pos
+	_apply_wave_scaling(dasher)
 
 func spawn_boss() -> void:
+	var pos := get_random_edge_position()
 	boss_instance = BossEnemyScene.instantiate() as BossEnemy
 	add_child(boss_instance)
+	boss_instance.global_position = pos
 	_apply_boss_scaling(boss_instance)
-	boss_instance.global_position = get_random_edge_position()
 
 func _get_wave_multiplier(scale_per_wave: float) -> float:
 	# Wave 1 should be baseline (1.0).
