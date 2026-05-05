@@ -55,9 +55,13 @@ func _on_level_up_message_changed(message: String) -> void:
 	message_label.text = message
 
 func _on_refresh_button_pressed() -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.level_up_refresh_requested.emit()
 
 func _on_choice_button_pressed(index: int) -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.level_up_choice_selected.emit(index)
 
 func apply_tier_to_button(button: Button, tier: int) -> void:

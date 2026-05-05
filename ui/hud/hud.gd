@@ -42,6 +42,8 @@ func _on_game_over_triggered() -> void:
 	game_over_button.visible = true
 
 func _on_game_over_button_pressed() -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	GameStateManager.switch_stage(GameStage.Type.MAIN_MENU)
 
 func _on_game_win_triggered() -> void:
@@ -49,6 +51,8 @@ func _on_game_win_triggered() -> void:
 	game_win_button.visible = true
 
 func _on_game_win_button_pressed() -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	GameStateManager.switch_stage(GameStage.Type.MAIN_MENU)
 
 func _on_cinematic_message_requested(message: String, duration: float) -> void:

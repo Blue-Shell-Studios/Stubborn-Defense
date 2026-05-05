@@ -210,18 +210,28 @@ func _on_shop_message_changed(message: String) -> void:
 	shop_message_label.text = message
 
 func _on_refresh_button_pressed() -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.shop_refresh_requested.emit()
 
 func _on_combine_button_pressed() -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.shop_selected_weapon_combine_requested.emit()
 
 func _on_sell_button_pressed() -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.shop_selected_weapon_sell_requested.emit()
 
 func _on_offer_button_pressed(index: int) -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.shop_buy_requested.emit(index)
 
 func _on_offer_lock_toggled(locked: bool, index: int) -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.shop_offer_lock_requested.emit(index, locked)
 	var lock_button := offer_lock_buttons[index] as Button
 	if lock_button:
@@ -231,6 +241,8 @@ func _apply_lock_button_visual(button: Button, locked: bool) -> void:
 	button.text = "🔒" if locked else "🔓"
 
 func _on_weapon_slot_pressed(index: int) -> void:
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("ui_click")
 	SignalBus.shop_weapon_selected.emit(index)
 
 func get_compact_weapon_name(weapon_name: String) -> String:

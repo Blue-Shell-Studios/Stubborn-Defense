@@ -19,6 +19,8 @@ func _physics_process(delta: float) -> void:
 	var distance := global_position.distance_to(target_player.global_position)
 	if distance <= absorb_distance:
 		target_player.collect_scrap(value)
+		if is_instance_valid(SoundManager):
+			SoundManager.play_sfx("collect_scrap")
 		queue_free()
 		return
 

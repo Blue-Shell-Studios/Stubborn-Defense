@@ -70,6 +70,8 @@ func damage_area(area: Area2D) -> void:
 	if target.has_method("take_damage"):
 		damaged_targets.append(target)
 		target.take_damage(damage, is_critical)
+		if is_instance_valid(SoundManager):
+			SoundManager.play_sfx("projectile_hit")
 
 func _on_area_entered(area: Area2D) -> void:
 	damage_area(area)

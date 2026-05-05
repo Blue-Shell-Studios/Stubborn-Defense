@@ -102,6 +102,8 @@ func fire_at(target: Area2D) -> void:
 		final_damage *= get_effective_critical_damage_multiplier()
 
 	projectile_manager.spawn_projectile(projectile_scene, output.global_position, get_projectile_stats(direction, final_damage, is_critical))
+	if is_instance_valid(SoundManager):
+		SoundManager.play_weapon_fire(weapon_id)
 	cooldown_timer.start(get_effective_cooldown())
 
 func get_projectile_stats(direction: Vector2, final_damage: float, is_critical: bool) -> Dictionary:

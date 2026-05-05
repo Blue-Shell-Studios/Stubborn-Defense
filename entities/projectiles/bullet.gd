@@ -28,5 +28,7 @@ func _on_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
 	if target and target.has_method("take_damage"):
 		target.take_damage(damage, is_critical)
+		if is_instance_valid(SoundManager):
+			SoundManager.play_sfx("projectile_hit")
 
 	queue_free()

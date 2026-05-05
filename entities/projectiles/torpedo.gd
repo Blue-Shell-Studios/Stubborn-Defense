@@ -36,6 +36,8 @@ func explode() -> void:
 		return
 
 	has_exploded = true
+	if is_instance_valid(SoundManager):
+		SoundManager.play_sfx("projectile_explode")
 
 	var query := PhysicsShapeQueryParameters2D.new()
 	var shape := CircleShape2D.new()
