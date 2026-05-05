@@ -1,6 +1,14 @@
 # Stubborn Defense
 
-Stubborn Defense is a 2D space survival defense game made in Godot. You pilot a lone ship protecting a central planet from waves of enemies, collecting scrap, upgrading weapons, and trying to keep the planet alive as long as possible.
+Stubborn Defense is a 2D space survival game with a Brotato-style build loop and a tower-defense twist. You pilot a lone ship, farm scrap, assemble a loadout, and protect a central planet from escalating waves.
+
+## Mechanical Twist (Survival + Defense)
+
+Classic survival-build games are about staying alive while scaling damage. Stubborn Defense adds a second failure condition: the planet is the objective. You can kite to survive, but if you abandon the planet too long, the defense collapses. The tension comes from balancing:
+
+- Offense scaling (clear waves faster, farm more scrap)
+- Positioning (stay near the planet to intercept threats)
+- Risk (pushing out for pickups vs. holding the line)
 
 ## Features
 
@@ -33,6 +41,12 @@ Stubborn Defense is a 2D space survival defense game made in Godot. You pilot a 
 - `Esc`: close shop
 - Click game-over screen: return to main menu
 
+## Known Issues / Limitations
+
+- Balance is still in progress (weapons, waves, and upgrades may change significantly).
+- Audio is early: basic music/SFX exist, but there is no in-game volume/settings menu yet.
+- Web export may have performance differences vs. desktop (depending on browser/device).
+
 ## Project Layout
 
 - `project.godot`: Godot project configuration.
@@ -52,6 +66,13 @@ Stubborn Defense is a 2D space survival defense game made in Godot. You pilot a 
 - `.github/workflows/deploy-pages.yml`: GitHub Pages deploy workflow.
 
 ## Dev Notes
+
+### Audio / SoundManager
+
+The project includes a `SoundManager` autoload (`autoloads/managers/sound_manager.gd`) that:
+
+- Plays menu/game music (`asset/sound/music/menu_track.ogg`, `asset/sound/music/game_track.ogg`) based on the active stage.
+- Plays basic SFX (UI clicks, scrap pickup, player hit, shield regen ticks) using assets under `asset/sound/`.
 
 ### Adding More Shop Items
 
@@ -227,3 +248,25 @@ Before deploying:
 - Scrap is both pickup count and shop currency.
 - Player crit chance starts at `0`; crit chance can come from items, level-up upgrades, or weapon-specific settings.
 - The planet is the win-condition anchor: if planet HP reaches zero, the game ends.
+
+## Credits
+
+### Art / Visual Assets
+
+- Void Pickups Pack (foozlecc): https://foozlecc.itch.io/void-pickups-pack
+- Void Fleet Pack 1 (foozlecc): https://foozlecc.itch.io/void-fleet-pack-1
+- Void Fleet Pack 2 (foozlecc): https://foozlecc.itch.io/void-fleet-pack-2
+- Pixel Planet Generator (deep-fold): https://deep-fold.itch.io/pixel-planet-generator
+
+### Audio
+
+Kenney (CC0, per Kenney license on their site):
+
+- Interface Sounds: https://kenney.nl/assets/interface-sounds
+- UI Audio: https://kenney.nl/assets/ui-audio
+- Sci-fi Sounds: https://kenney.nl/assets/sci-fi-sounds
+
+### Licenses
+
+- Kenney audio assets are CC0.
+- Other third-party assets are used under the licenses listed on their respective asset pages (links above).

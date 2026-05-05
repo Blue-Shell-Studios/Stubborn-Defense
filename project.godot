@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 GameStateManager="*uid://dxac2agbx5f7r"
 GameFlowManager="*res://autoloads/managers/game_flow_manager.gd"
+SoundManager="*res://autoloads/managers/sound_manager.gd"
 Util="*uid://d1ytct4kono27"
 SignalBus="*uid://b50635eradkpf"
 
